@@ -1,0 +1,149 @@
+h1 {
+    display: inline;
+    position: relative;
+}
+
+h1:after {
+    content: "";
+    position: absolute;
+    background-color: #dcdde4;
+    height: 4px;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+}
+
+.CopyCode::selection {
+    background-color: transparent;
+}
+
+/* Customize the label (the custom-checkboxes) */
+.custom-checkboxes {
+    display: inline-block;
+    position: relative;
+    margin: 2.6rem 0 0 2rem;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    z-index: 9999;
+    color: #fff;
+}
+
+/* Hide the browser's default checkbox */
+.custom-checkboxes input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: #a2a2a2;
+    z-index: -1;
+}
+
+/* On mouse-over, add a grey background color */
+.custom-checkboxes:hover input ~ .checkmark {
+    background-color: #2196F3;
+}
+
+/* When the checkbox is checked, add a blue background */
+.custom-checkboxes input:checked ~ .checkmark {
+    background-color: #2196F3;
+}
+
+.absolute-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.display-none {
+    display: none !important;
+}
+
+/*custom radio*/
+/* Customize the label (the container) */
+.custom-radio {
+    display: inline-block;
+    position: relative;
+    padding-left: 35px;
+    margin-left: 12px;
+    cursor: pointer;
+    font-size: 20px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.custom-radio input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom radio button */
+.radio-btn {
+    position: absolute;
+    top: 5px;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+/* On mouse-over, add a red background color */
+.custom-radio:hover input ~ .radio-btn.red,
+.custom-radio input:checked ~ .radio-btn.red {
+    background-color: #e74a3b !important;
+}
+
+/* On mouse-over, add a geen background color */
+.custom-radio:hover input ~ .radio-btn.green,
+.custom-radio input:checked ~ .radio-btn.green {
+    background-color: #1cc88a !important;
+}
+
+/* On mouse-over, add a yellow background color */
+.custom-radio:hover input ~ .radio-btn.yellow,
+.custom-radio input:checked ~ .radio-btn.yellow {
+    background-color: #f6c23e !important;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.radio-btn:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.custom-radio input:checked ~ .radio-btn:after {
+    display: block;
+}
+
+.custom-radio .radio-btn:after {
+    top: 6px;
+    left: 6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+}
