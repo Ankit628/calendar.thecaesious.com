@@ -1,10 +1,19 @@
 <?php
 
 /**
+ * @param $text
+ * @return string|string[]
+ */
+function deSlugify($text)
+{
+    return str_replace('_', ' ', $text);
+}
+
+/**
  * @param $i
  * @return string
  */
-function getBGClass($i)
+function getTextClass($i)
 {
     switch ($i) {
         case 3:
@@ -72,6 +81,40 @@ function getHumanReadableTimeFormat()
         'this_month' => 'This Month',
         'next_month' => 'Next Month',
     ];
+}
+
+/**
+ * @param $input
+ * @return string|null
+ */
+function getDaysOfWeek($input)
+{
+    switch ($input) {
+        case 1:
+            return 'sun';
+            break;
+        case 2:
+            return 'mon';
+            break;
+        case 3:
+            return 'tue';
+            break;
+        case 4:
+            return 'wed';
+            break;
+        case 5:
+            return 'thu';
+            break;
+        case 6:
+            return 'fri';
+            break;
+        case 7:
+            return 'sat';
+            break;
+        default:
+            return null;
+            break;
+    }
 }
 
 /**

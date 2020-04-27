@@ -16,8 +16,8 @@
                         <h3 class="card-title">
                             Events list
                         </h3>
-                        <div class="row card mb-3 border-0 border-bottom-primary">
-                            <div class="col-lg-12 col-md-12 col-sm-12 card-header pt-0">
+                        <div class="row mb-3">
+                            <div class="col-lg-12 col-md-12 col-sm-12 pt-0">
                                 {{ Form::open(['route' => ['admin.event.index'],'id'=>'events-filter-form','class'=>'form-horizontal','method'=>'GET']) }}
                                 <div class="form-row">
                                     <div class="col-md-2 p-1">
@@ -42,7 +42,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-striped table-hover">
+                            <table class="table table-hover">
                                 <thead class="thead-dark">
                                 <tr>
                                     <th style="width:40%">Event Name</th>
@@ -54,7 +54,7 @@
                                 @foreach($model as $item)
                                     <tr>
                                         <td>
-                                            <span class="{{getBGClass($item['event_priority'])}} fa fa-sticky-note"></span> {{$item['event_name']}}
+                                            <span class="{{getTextClass($item['event_priority'])}} fa fa-sticky-note"></span> {{$item['event_name']}}
                                         </td>
                                         <td class="text-center">{{$item['event_startDate']}} / {{$item['event_endDate']}}</td>
                                         <td class="text-center">

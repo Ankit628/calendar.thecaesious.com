@@ -14,15 +14,15 @@
                         </div>
                         <div class="col-md-8 mt-2">
                             <label class="custom-radio text-success">
-                                {!! Form::radio('event_priority', '1',null,['required'=>'required'])!!} Low Priority
+                                {!! Form::radio('event_priority', '1',null,['class'=>'form-control','required'=>'required'])!!} Low Priority
                                 <span class="radio-btn green"></span>
                             </label>
                             <label class="custom-radio text-warning">
-                                {!! Form::radio('event_priority', '2',null,['required'=>'required'])!!} Medium Priority
+                                {!! Form::radio('event_priority', '2',null,['class'=>'form-control','required'=>'required'])!!} Medium Priority
                                 <span class="radio-btn yellow"></span>
                             </label>
                             <label class="custom-radio text-danger">
-                                {!! Form::radio('event_priority', '3',null,['required'=>'required'])!!} High Priority
+                                {!! Form::radio('event_priority', '3',null,['class'=>'form-control','required'=>'required'])!!} High Priority
                                 <span class="radio-btn red"></span>
                             </label>
                         </div>
