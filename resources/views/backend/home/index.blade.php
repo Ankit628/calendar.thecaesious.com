@@ -5,7 +5,7 @@
 @section('content')
     <div class="row mb-4">
         <div class="col-md-12">
-            <div class="btn-group-lg">
+            <div class="btn-group-sm">
                 <a href="{{route('admin.event.create')}}" class="btn btn-success">
                     <div class="card bg-transparent border-0">
                         <div class="card-body">
