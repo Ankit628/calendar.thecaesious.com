@@ -41,9 +41,7 @@
 @endsection
 @push('scripts')
     <script>
-        let datePicker = flatpickr('.DatePicker', {
-            allowInput: true
-        });
+        let datePicker = flatpickr('.DatePicker');
         let timePicker = flatpickr('.timePicker', {
             enableTime: true,
             noCalendar: true,

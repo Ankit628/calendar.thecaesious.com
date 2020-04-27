@@ -3,18 +3,23 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Model\Event;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('backend.home.index');
+        $filter = empty($request->get('filter_per_page')) ? 10 : $request->get('filter_per_page');
+        $startDate = empty($request->get('start_date')) ? now()->format('Y-m-d') : Carbon::parse($request->get('start_date'))->format('Y-m-d');
+        $endDate = empty($request->get('end_date')) ? now()->addMonths(2)->format('Y-m-d') : Carbon::parse($request->get('end_date'))->format('Y-m-d');
+        $model = Event::orderBy('event_startDate', 'asc')->whereBetween('event_startDate', [$startDate . ' 00:00:00', $endDate . ' 23:59:59'])->limit($filter)->get();
+        return view('backend.home.index', compact('model'));
     }
 
     /**

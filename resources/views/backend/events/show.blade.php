@@ -15,10 +15,8 @@
                                     Details
                                 </h4>
                             </div>
-                            <div class="col-md-4">
-                                <a href="{{route('admin.event.edit',['id'=>$model['id']])}}" class="btn btn-info btn-sm"><span class="fa fa-edit"></span> Edit</a>
-                                <a href="#deleteModal" class="btn btn-danger btn-sm btn-delete" data-toggle="modal" data-route="{{route('admin.event.destroy',['id'=>$model['id']])}}"><span class="fa fa-trash-alt"></span> Delete</a>
-                                <a href="{{route('admin.event.show',['id'=>$model['id']])}}" class="btn btn-warning btn-sm btn-delete"><span class="fa fa-eye"></span> Show</a>
+                            <div class="col-md-4 text-right">
+                                <a href="{{route('admin.event.edit',['id'=>$model['id']])}}" class="btn btn-info"><span class="fa fa-edit"></span> Edit</a>
                             </div>
                         </div>
                     </div>
@@ -66,12 +64,4 @@
     @endif
 @endsection
 @push('scripts')
-    <script type="text/javascript">
-        jQuery(function ($) {
-            $('.btn-delete').on('click', function () {
-                let route = $(this).data('route');
-                $('#deleteModal').find('a').attr('href', route);
-            });
-        });
-    </script>
 @endpush

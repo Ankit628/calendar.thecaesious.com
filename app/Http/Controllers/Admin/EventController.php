@@ -83,6 +83,6 @@ class EventController extends Controller
     {
         Event::findOrFail($id)->delete();
         Session::flash('success', 'Event successfully deleted');
-        return redirect(route('admin.event.index'));
+        return redirect()->back();
     }
 }
