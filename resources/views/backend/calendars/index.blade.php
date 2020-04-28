@@ -25,10 +25,18 @@
                     {
                         id: '{{$item['id']}}',
                         title: '{{$item['event_name']}}',
-                        start: '{{$item['event_startDate']}}',
-                        end: '{{$item['event_endDate']}}',
+                        start: '{{$item['event_startDate']}}' + 'T' + '{{$item['event_startTime']}}',
+                        end: '{{$item['event_endDate']}}' + 'T' + '{{$item['event_endTime']}}',
                         url: '{{route('admin.event.show',['id'=>$item['id']])}}',
-                        color: '{{getBGColor($item['event_priority'])}}'
+                        color: '{{getBGColor($item['event_priority'])}}',
+                        @if(!empty($item['event_repeating_days']))
+                        daysOfWeek: {!! getStringOfDates($item['event_repeating_days'])!!},
+                        startRecur: '{{$item['event_startDate']}}',
+                        @endif
+                            @if(!empty($item['event_recursion']) && $item['event_recursion']!=='custom_days')
+                        daysOfWeek: {!! getStringOfDates($item['event_recursion'],$item['event_startDate'])!!},
+                        startRecur: '{{$item['event_startDate']}}',
+                        @endif
                     },
                     @endforeach
                 ],

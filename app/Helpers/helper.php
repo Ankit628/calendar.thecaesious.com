@@ -1,5 +1,7 @@
 <?php
 
+use Carbon\Carbon;
+
 /**
  * @param $text
  * @return string|string[]
@@ -62,8 +64,8 @@ function getHumanReadableTimePeriods()
         'null' => 'None',
         'daily' => 'Daily',
         'weekly' => 'Weekly',
-        'monthly' => 'Monthly',
-        'annually' => 'Annually',
+//        'monthly' => 'Monthly',
+//        'annually' => 'Annually',
         'custom_days' => 'Custom Days'
     ];
 }
@@ -90,25 +92,25 @@ function getHumanReadableTimeFormat()
 function getDaysOfWeek($input)
 {
     switch ($input) {
-        case 1:
+        case 0:
             return 'sun';
             break;
-        case 2:
+        case 1:
             return 'mon';
             break;
-        case 3:
+        case 2:
             return 'tue';
             break;
-        case 4:
+        case 3:
             return 'wed';
             break;
-        case 5:
+        case 4:
             return 'thu';
             break;
-        case 6:
+        case 5:
             return 'fri';
             break;
-        case 7:
+        case 6:
             return 'sat';
             break;
         default:
@@ -132,6 +134,34 @@ function getPageList()
         'all' => 'All',
 
     ];
+}
+
+/**
+ * @param $arr
+ * @param null $date
+ * @return array|Carbon|int|string|null
+ */
+function getStringOfDates($var, $date = null)
+{
+    if (is_array($var)) {
+        $newArr = "['";
+        $newArr .= implode("','", $var);
+        $newArr .= "']";
+        return $newArr;
+    } else {
+        switch ($var) {
+            case 'daily':
+                return ['1', '2', '3', '4', '5', '6', '7'];
+                break;
+            case 'weekly':
+                $intDate = Carbon::parse($date)->format('N');
+                return "['".$intDate."']";
+                break;
+            default:
+                return null;
+                break;
+        }
+    }
 }
 
 
