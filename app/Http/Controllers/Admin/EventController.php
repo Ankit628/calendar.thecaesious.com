@@ -60,6 +60,10 @@ class EventController extends Controller
     public function update(Request $request, $id)
     {
         $input = $request->all();
+        if (($request->get('event_recursion')) == 'null'):
+            $input['event_repeating_days'] = null;
+            $input['event_recursion'] = null;
+        endif;
         $model = Event::findOrFail($id);
         $model->update($input);
         return 'success';

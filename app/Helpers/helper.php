@@ -92,25 +92,25 @@ function getHumanReadableTimeFormat()
 function getDaysOfWeek($input)
 {
     switch ($input) {
-        case 0:
+        case 1:
             return 'sun';
             break;
-        case 1:
+        case 2:
             return 'mon';
             break;
-        case 2:
+        case 3:
             return 'tue';
             break;
-        case 3:
+        case 4:
             return 'wed';
             break;
-        case 4:
+        case 5:
             return 'thu';
             break;
-        case 5:
+        case 6:
             return 'fri';
             break;
-        case 6:
+        case 0:
             return 'sat';
             break;
         default:
@@ -151,7 +151,7 @@ function getStringOfDates($var, $date = null)
     } else {
         switch ($var) {
             case 'daily':
-                return ['1', '2', '3', '4', '5', '6', '7'];
+                return ['0', '1', '2', '3', '4', '5', '6'];
                 break;
             case 'weekly':
                 $intDate = Carbon::parse($date)->format('N');

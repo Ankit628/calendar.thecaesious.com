@@ -38,31 +38,31 @@
     <div class="col-md-6">
         <div class="form-group weekDays">
             <label class="custom-checkboxes">
-                {!! Form::checkbox('event_repeating_days[]',1,null,['class'=>'form-control']) !!} Sat
+                {!! Form::checkbox('event_repeating_days[]',6,null,['class'=>'form-control']) !!} Sat
                 <span class="checkmark"></span>
             </label>
             <label class="custom-checkboxes">
-                {!! Form::checkbox('event_repeating_days[]',2,null,['class'=>'form-control']) !!} Sun
+                {!! Form::checkbox('event_repeating_days[]',0,null,['class'=>'form-control']) !!} Sun
                 <span class="checkmark"></span>
             </label>
             <label class="custom-checkboxes">
-                {!! Form::checkbox('event_repeating_days[]',3,null,['class'=>'form-control']) !!} Mon
+                {!! Form::checkbox('event_repeating_days[]',1,null,['class'=>'form-control']) !!} Mon
                 <span class="checkmark"></span>
             </label>
             <label class="custom-checkboxes">
-                {!! Form::checkbox('event_repeating_days[]',4,null,['class'=>'form-control']) !!} Tue
+                {!! Form::checkbox('event_repeating_days[]',2,null,['class'=>'form-control']) !!} Tue
                 <span class="checkmark"></span>
             </label>
             <label class="custom-checkboxes">
-                {!! Form::checkbox('event_repeating_days[]',5,null,['class'=>'form-control']) !!} Wed
+                {!! Form::checkbox('event_repeating_days[]',3,null,['class'=>'form-control']) !!} Wed
                 <span class="checkmark"></span>
             </label>
             <label class="custom-checkboxes">
-                {!! Form::checkbox('event_repeating_days[]',6,null,['class'=>'form-control']) !!} Thu
+                {!! Form::checkbox('event_repeating_days[]',4,null,['class'=>'form-control']) !!} Thu
                 <span class="checkmark"></span>
             </label>
             <label class="custom-checkboxes">
-                {!! Form::checkbox('event_repeating_days[]',7,null,['class'=>'form-control']) !!} Fri
+                {!! Form::checkbox('event_repeating_days[]',5,null,['class'=>'form-control']) !!} Fri
                 <span class="checkmark"></span>
             </label>
         </div>
