@@ -33,6 +33,10 @@ class EventController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
+        if (($request->get('event_recursion')) == 'null'):
+            $input['event_repeating_days'] = null;
+            $input['event_recursion'] = null;
+        endif;
         Event::create($input);
         Session::flash('success', 'Event successfully created');
         return redirect(route('admin.event.index'));
