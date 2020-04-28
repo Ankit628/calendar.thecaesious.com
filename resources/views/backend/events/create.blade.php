@@ -5,12 +5,15 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            {!! Form::model(!empty($model)?$model:null,['id'=>'createEventForm','route'=>'admin.event.store','method'=>'POST']) !!}
+            {!! Form::open(['id'=>'createEventForm','route'=>'admin.event.store','method'=>'POST']) !!}
             <div class="card shadow">
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-3">
-                            <h2 class="card-title">Create Event</h2>
+                            <h2 class="card-title">
+                                <span class="fa fa-sticky-note text-lg text-success pr-4"></span>
+                                Create Event Form
+                            </h2>
                         </div>
                         <div class="col-md-8 mt-2">
                             <label class="custom-radio text-success">
@@ -27,14 +30,16 @@
                             </label>
                         </div>
                         <div class="col-md-1">
-                            <button type="submit" class="float-right btn btn-success" id="btn-submit">Create</button>
+                            <button type="submit" class="float-right btn btn-success" id="btn-submit">
+                                <span class="fa fa-check-circle"></span>
+                                Create
+                            </button>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
                     @include('backend.events.fields')
                 </div>
-            </div>
             {!! Form::close() !!}
         </div>
     </div>
@@ -55,8 +60,7 @@
             customCheckboxes.on('click', function () {
                 let val = optionalField.val();
                 if (val !== 'custom_days') {
-                    toastr.error('Error', 'Cannot select Days on this option');
-                    toastr.warning('Warning', 'Please select custom days option to select days');
+                    toastr.error('Warning', 'Cannot select Days on this option.Please select custom days option to select days');
                     return false;
                 }
             });

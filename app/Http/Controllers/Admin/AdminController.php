@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Model\Event;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -18,7 +18,7 @@ class AdminController extends Controller
         $filter = empty($request->get('filter_per_page')) ? 10 : $request->get('filter_per_page');
         $startDate = empty($request->get('start_date')) ? now()->format('Y-m-d') : Carbon::parse($request->get('start_date'))->format('Y-m-d');
         $endDate = empty($request->get('end_date')) ? now()->addMonths(2)->format('Y-m-d') : Carbon::parse($request->get('end_date'))->format('Y-m-d');
-        $model = Event::orderBy('event_startDate', 'asc')->whereBetween('event_startDate', [$startDate . ' 00:00:00', $endDate . ' 23:59:59'])->limit($filter)->get();
+        $model = $model = Auth::user()->events()->orderBy('event_startDate', 'asc')->whereBetween('event_startDate', [$startDate . ' 00:00:00', $endDate . ' 23:59:59'])->limit($filter)->get();
         return view('backend.home.index', compact('model'));
     }
 

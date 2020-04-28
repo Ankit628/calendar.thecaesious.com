@@ -15,6 +15,7 @@ class CreateEventsTable extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->string('event_name');
             $table->date('event_startDate');
             $table->date('event_endDate');
@@ -26,6 +27,7 @@ class CreateEventsTable extends Migration
             $table->json('event_repeating_days')->nullable();
             $table->json('event_data')->nullable();
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

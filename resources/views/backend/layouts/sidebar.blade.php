@@ -14,7 +14,7 @@
     <!-- Nav Item - Dashboard -->
     <li class="nav-item">
         <a class="nav-link" href="{{route('admin.calendar.index')}}">
-            <i class="fa fa-calendar" style="font-size:1.3rem;"></i>
+            <i class="fa fa-calendar text-lg"></i>
             <span>Calendar</span>
         </a>
     </li>
@@ -25,15 +25,28 @@
     <!-- Nav Item - Dashboard -->
     <li class="nav-item">
         <a class="nav-link" href="{{route('admin.event.index')}}">
-            <i class="fa fa-bell"></i>
+            <i class="fa fa-bell text-lg"></i>
             <span>Events</span>
         </a>
     </li>
+@if(\Illuminate\Support\Facades\Auth::user()->hasRole('admin'))
+    <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+        <!-- Nav Item - Pages Collapse Menu -->
 
-    <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link" href="{{route('admin.user.index')}}">
+                <i class="fas fa-fw fa-user-circle text-lg"></i>
+                <span>Users</span>
+            </a>
+        </li>
+@endif
+<!-- Divider -->
+    <hr class="sidebar-divider my-0">
+
     <li class="nav-item">
         <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
-            <i class="fas fa-fw fa-user-circle"></i>
+            <i class="fas fa-sign-out-alt text-lg"></i>
             <span>Logout ({{Auth::user()->name}})</span>
         </a>
     </li>

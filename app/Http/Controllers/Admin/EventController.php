@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Model\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class EventController extends Controller
@@ -14,7 +15,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        $model = Event::all();
+        $model = Auth::user()->events;
         return view('backend.events.index', compact('model'));
     }
 
@@ -37,21 +38,23 @@ class EventController extends Controller
             $input['event_repeating_days'] = null;
             $input['event_recursion'] = null;
         endif;
+        $input['user_id'] = Auth::user()->id;
         Event::create($input);
         Session::flash('success', 'Event successfully created');
         return redirect(route('admin.event.index'));
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
      */
     public function edit($id)
     {
         $model = Event::findOrFail($id);
-        return view('backend.events.edit', compact('model'));
+        if (Auth()->user()->id == $model->user->id)
+            return view('backend.events.edit', compact('model'));
+        else
+            return redirect(route('admin.event.index'));
     }
 
     /**
@@ -68,6 +71,7 @@ class EventController extends Controller
             $input['event_repeating_days'] = null;
             $input['event_recursion'] = null;
         endif;
+        $input['user_id'] = Auth::user()->id;
         $model = Event::findOrFail($id);
         $model->update($input);
         return 'success';
@@ -75,12 +79,15 @@ class EventController extends Controller
 
     /**
      * @param $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
      */
     public function show($id)
     {
         $model = Event::findOrFail($id);
-        return view('backend.events.show', compact('model'));
+        if (Auth()->user()->id == $model->user->id)
+            return view('backend.events.show', compact('model'));
+        else
+            return redirect(route('admin.event.index'));
     }
 
     /**
@@ -89,8 +96,13 @@ class EventController extends Controller
      */
     public function destroy($id)
     {
-        Event::findOrFail($id)->delete();
-        Session::flash('success', 'Event successfully deleted');
-        return redirect()->back();
+        $model = Event::findOrFail($id);
+        if (Auth()->user()->id == $model->user->id):
+            $model->delete();
+            Session::flash('success', 'Event successfully deleted');
+            return redirect()->back();
+        else:
+            return redirect(route('admin.event.index'));
+        endif;
     }
 }

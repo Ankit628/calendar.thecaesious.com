@@ -5,7 +5,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <div class="card shadow p-3 full-height">
+            <div class="card shadow p-3 full-height text-lg text-dark">
                 <div id="calendar"></div>
             </div>
         </div>
@@ -17,7 +17,7 @@
             let calendarelem = $('#calendar');
             let calendar = new FullCalendar.Calendar(calendarelem[0], {
                 plugins: ['dayGrid'],
-                theme: ['bootstrap'],
+                theme: ['standard'],
                 textColor: '#fff',
                 height: 'parent',
                 events: [

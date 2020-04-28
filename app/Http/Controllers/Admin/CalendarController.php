@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Model\Event;
+use Illuminate\Support\Facades\Auth;
 
 class CalendarController extends Controller
 {
@@ -12,7 +12,7 @@ class CalendarController extends Controller
      */
     public function index()
     {
-        $model = Event::all();
+        $model = Auth::user()->events;
         return view('backend.calendars.index', compact('model'));
     }
 }

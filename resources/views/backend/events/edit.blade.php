@@ -9,10 +9,13 @@
             <div class="card shadow">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-md-3">
-                            <h2 class="card-title">Edit Event</h2>
+                        <div class="col-md-4">
+                            <h2 class="card-title">
+                                <span class="fa fa-sticky-note text-lg text-success pr-4"></span>
+                                Edit Event: {{$model['event_name']}}
+                            </h2>
                         </div>
-                        <div class="col-md-8 mt-2">
+                        <div class="col-md-8">
                             <label class="custom-radio text-success">
                                 {!! Form::radio('event_priority', '1')!!} Low Priority
                                 <span class="radio-btn green"></span>
@@ -26,15 +29,20 @@
                                 <span class="radio-btn red"></span>
                             </label>
                         </div>
-                        <div class="col-md-1">
-                            <a href="javascript:void(0)" class="float-right btn btn-sm btn-info" id="btn-update">Update</a>
-                            <img src="{{asset('backend/assets/img/dual-ring.png')}}" alt="loader" style="display:none;" id="loader"
-                                 width="70px"/>
-                        </div>
                     </div>
                 </div>
                 <div class="card-body">
                     @include('backend.events.fields')
+                </div>
+                <div class="card-footer text-right">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <img src="{{asset('backend/assets/img/dual-ring.png')}}" alt="loader" style="display:none;" id="loader" width="70px"/>
+                            <a href="javascript:void(0)" class="btn btn-info" id="btn-update"><span class="fa fa-check-circle"></span> Update</a>
+                            <a href="{{route('admin.event.destroy',['id'=>$model['id']])}}" class="btn btn-danger btn-delete"><span class="fa fa-trash-alt"></span> Delete</a>
+                            <a href="{{route('admin.event.show',['id'=>$model['id']])}}" class="btn btn-warning"><span class="fa fa-eye"></span> Show</a>
+                        </div>
+                    </div>
                 </div>
             </div>
             {!! Form::close() !!}
@@ -42,7 +50,7 @@
     </div>
 @endsection
 @push('scripts')
-    <script>
+    <script type="text/javascript">
         let datePicker = flatpickr('.DatePicker');
         let timePicker = flatpickr('.timePicker', {
             enableTime: true,
