@@ -86,6 +86,7 @@ class UserController extends Controller
     {
         if (Auth::user()->hasRole('admin')):
             $model = User::findOrFail($id);
+            $model->assignRole('subscriber');
             $input = $request->all();
             $model->update($input);
             return 'success';

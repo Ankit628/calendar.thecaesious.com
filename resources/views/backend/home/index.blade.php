@@ -3,6 +3,7 @@
     <h1>Dashboard</h1>
 @endsection
 @section('content')
+    @if(!empty($model))
     <div class="row mb-4">
         <div class="col-md-12">
             <div class="btn-group-sm">
@@ -91,6 +92,24 @@
             </div>
         </div>
     </div>
+    @else
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <div class="card shadow">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <h2 class="text-warning">Notice <span class="fa fa-exclamation"></span></h2>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">
+                                Your account is being verified. Please try again after a while to start using this site. Verification usually happens within an hour but it may take a upto 24hrs at most to get your account verified.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
 @endsection
 @push('scripts')
     <script type="text/javascript">

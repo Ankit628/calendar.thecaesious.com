@@ -11,20 +11,28 @@ use Illuminate\Support\Facades\Session;
 class EventController extends Controller
 {
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View\
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
      */
     public function index()
     {
-        $model = Auth::user()->events;
-        return view('backend.events.index', compact('model'));
+        if (Auth::user()->hasRole('subscriber') || Auth::user()->hasRole('admin')):
+            $model = Auth::user()->events;
+            return view('backend.events.index', compact('model'));
+        else:
+            return redirect(route('admin.index'));
+        endif;
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
      */
     public function create()
     {
-        return view('backend.events.create');
+        if (Auth::user()->hasRole('subscriber') || Auth::user()->hasRole('admin')):
+            return view('backend.events.create');
+        else:
+            return redirect(route('admin.index'));
+        endif;
     }
 
     /**
@@ -54,7 +62,7 @@ class EventController extends Controller
     public function edit($id)
     {
         $model = Event::findOrFail($id);
-        if (Auth::user()->id == $model->user->id || Auth::user()->hasRole('admin'))
+        if ((Auth::user()->id == $model->user->id && Auth::user()->hasRole('subscriber')) || Auth::user()->hasRole('admin'))
             return view('backend.events.edit', compact('model'));
         else
             return redirect(route('admin.event.index'));
@@ -90,7 +98,7 @@ class EventController extends Controller
     public function show($id)
     {
         $model = Event::findOrFail($id);
-        if (Auth::user()->id == $model->user->id || Auth::user()->hasRole('admin'))
+        if ((Auth::user()->id == $model->user->id && Auth::user()->hasRole('subscriber')) || Auth::user()->hasRole('admin'))
             return view('backend.events.show', compact('model'));
         else
             return redirect(route('admin.event.index'));
@@ -103,7 +111,7 @@ class EventController extends Controller
     public function destroy($id)
     {
         $model = Event::findOrFail($id);
-        if (Auth::user()->id == $model->user->id || Auth::user()->hasRole('admin')):
+        if ((Auth::user()->id == $model->user->id && Auth::user()->hasRole('subscriber')) || Auth::user()->hasRole('admin')):
             $model->delete();
             Session::flash('success', 'Event successfully deleted');
             return redirect()->back();

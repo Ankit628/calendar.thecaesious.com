@@ -23,7 +23,15 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        @include('backend.users.fields')
+                        <div class="form-row">
+                            @include('backend.users.fields')
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    {!! Form::label('password','Password',['class'=>'col-form-label']) !!}
+                                    {!! Form::password('password',['class'=>'form-control','required'=>'required']) !!}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

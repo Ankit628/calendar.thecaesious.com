@@ -1,4 +1,4 @@
-<div class="form-row">
+
     <div class="col-md-12">
         <div class="form-group">
             {!! Form::label('name','User Name',['class'=>'col-form-label']) !!}
@@ -11,10 +11,3 @@
             {!! Form::email('email',null,['class'=>'form-control','required'=>'required']) !!}
         </div>
     </div>
-    <div class="col-md-12">
-        <div class="form-group">
-            {!! Form::label('password','Password',['class'=>'col-form-label']) !!}
-            {!! Form::password('password',['class'=>'form-control','required'=>'required']) !!}
-        </div>
-    </div>
-</div>

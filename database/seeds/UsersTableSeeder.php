@@ -27,7 +27,7 @@ class UsersTableSeeder extends Seeder
             'id' => 1,
             'name' => 'TheCaesious',
             'email' => 'info@thecaesious.com',
-            'password' => bcrypt('secret'),
+            'password' => bcrypt('admin'),
         ]);
         $user->assignRole($role);
     }

@@ -17,13 +17,19 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    @include('backend.users.fields')
+                    <div class="form-row">
+                        @include('backend.users.fields')
+                    </div>
                 </div>
                 <div class="card-footer text-right">
                     <div class="row">
                         <div class="col-md-12">
                             <img src="{{asset('backend/assets/img/dual-ring.png')}}" alt="loader" style="display:none;" id="loader" width="70px"/>
-                            <a href="javascript:void(0)" class="btn  btn-info" id="btn-update"><span class="fa fa-check-circle"></span> Update</a>
+                            @if(\App\User::findOrFail($model['id'])->hasRole('subscriber'))
+                                <a href="javascript:void(0)" class="btn btn-info" id="btn-update"><span class="fa fa-check-circle"></span> Update</a>
+                            @else
+                                <a href="javascript:void(0)" class="btn btn-success" id="btn-update"><span class="fa fa-check-circle"></span> Approve</a>
+                            @endif
                             <a href="{{route('admin.user.destroy',['id'=>$model['id']])}}" class="btn btn-danger"><span class="fa fa-trash-alt"></span> Delete</a>
                             <a href="{{route('admin.user.show',['id'=>$model['id']])}}" class="btn btn-warning"><span class="fa fa-eye"></span> Show</a>
                         </div>

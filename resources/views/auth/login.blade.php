@@ -9,7 +9,7 @@
                 <div class="col-lg-6">
                     <div class="p-5">
                         <div class="text-center">
-                            <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                            <h2 class="h4 text-gray-900 mb-4">Welcome Back!</h2>
                         </div>
                         <form method="POST" action="{{ route('login') }}" class="user">
                             @csrf
@@ -50,11 +50,14 @@
                             </button>
                         </form>
                         <hr>
-                        @if (Route::has('password.request'))
-                            <div class="text-center">
+                        <div class="text-center">
+                            @if (Route::has('register'))
+                                <a class="small" href="{{ route('register') }}">{{ __('Register Account?') }}</a>
+                            @endif
+                            @if (Route::has('password.request'))
                                 <a class="small" href="{{ route('password.request') }}">{{ __('Forgot Your Password?') }}</a>
-                            </div>
-                        @endif
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>
