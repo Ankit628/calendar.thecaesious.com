@@ -61,6 +61,11 @@
         $(function () {
             let customCheckboxes = $('.custom-checkboxes');
             let optionalField = $('.optional-field');
+            let body = $('body');
+            let createEventForm = $('#editEventForm');
+            let loader = $('#loader');
+            let submitBtn = $('#btn-update');
+            let updateEventRoute = '{{route('admin.event.update',['id'=>$model['id']])}}';
             optionalField.on('change', function () {
                 if ($(this).val() !== 'custom_days') {
                     customCheckboxes.find('input[type=checkbox]').prop("checked", false)
@@ -69,16 +74,10 @@
             customCheckboxes.on('click', function () {
                 let val = optionalField.val();
                 if (val !== 'custom_days') {
-                    toastr.error('Error', 'Cannot select Days on this option');
-                    toastr.warning('Warning', 'Please select custom days option to select days');
+                    toastr.error('Warning', 'Cannot select Days on this option. Please select custom days option to select days');
                     return false;
                 }
             });
-            let body = $('body');
-            let createEventForm = $('#editEventForm');
-            let loader = $('#loader');
-            let submitBtn = $('#btn-update');
-            let updateEventRoute = '{{route('admin.event.update',['id'=>$model['id']])}}';
             submitBtn.on('click', function (e) {
                 e.preventDefault();
                 submitBtn.prop('disabled', true);

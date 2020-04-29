@@ -147,3 +147,7 @@ h1:after {
     border-radius: 50%;
     background: white;
 }
+
+.row {
+    align-items: center;
+}

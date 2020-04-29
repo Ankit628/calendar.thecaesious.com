@@ -5,25 +5,31 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
      */
     public function index()
     {
-        $model = User::all();
-        return view('backend.users.index', compact('model'));
+        if (Auth::user()->hasRole('admin'))
+            return view('backend.users.index')->with('model', User::all());
+        else
+            return redirect(route('admin.index'));
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
      */
     public function create()
     {
-        return view('backend.users.create');
+        if (Auth::user()->hasRole('admin'))
+            return view('backend.users.create');
+        else
+            return redirect(route('admin.index'));
     }
 
     /**
@@ -32,59 +38,103 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->all();
-        $user = User::create($input);
-        $user->assignRole('subscriber');
-        Session::flash('success', 'User Successfully Created');
-        return redirect(route('admin.user.index'));
+        if (Auth::user()->hasRole('admin')):
+            $input = $request->all();
+            $user = User::create($input);
+            $user->assignRole('subscriber');
+            Session::flash('success', 'User Successfully Created');
+            return redirect(route('admin.user.index'));
+        else:
+            return redirect(route('admin.index'));
+        endif;
     }
 
     /**
      * @param $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View\
      */
     public function show($id)
     {
-        $model = User::findOrFail($id);
-        return view('backend.users.show', compact('model'));
+        if (Auth::user()->hasRole('admin')):
+            $model = User::findOrFail($id);
+            return view('backend.users.show', compact('model'));
+        else:
+            return redirect(route('admin.index'));
+        endif;
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
      */
     public function edit($id)
     {
-        $model = User::findOrFail($id);
-        return view('backend.users.edit', compact('model'));
+        if (Auth::user()->hasRole('admin')):
+            $model = User::findOrFail($id);
+            return view('backend.users.edit', compact('model'));
+        else:
+            return redirect(route('admin.index'));
+        endif;
     }
 
     /**
      * @param Request $request
      * @param $id
-     * @return string
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|string
      */
     public function update(Request $request, $id)
     {
-        $model = User::findOrFail($id);
-        $input = $request->all();
-        $model->update($input);
-        return 'success';
+        if (Auth::user()->hasRole('admin')):
+            $model = User::findOrFail($id);
+            $input = $request->all();
+            $model->update($input);
+            return 'success';
+        else:
+            return redirect(route('admin.index'));
+        endif;
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
      */
     public function destroy($id)
     {
-        $model = User::findOrFail($id);
-        $model->delete();
-        Session::flash('success', 'User successfully Deleted');
-        return redirect(route('admin.user.index'));
+        if (Auth::user()->hasRole('admin')):
+            $model = User::findOrFail($id);
+            $model->delete();
+            Session::flash('success', 'User successfully Deleted');
+            return redirect(route('admin.user.index'));
+        else:
+            return redirect(route('admin.index'));
+        endif;
+    }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
+     */
+    public function events($id)
+    {
+        if (Auth::user()->hasRole('admin')):
+            $model = User::findOrFail($id);
+            return view('backend.users.events')->with('model', $model->events);
+        else:
+            return redirect(route('admin.index'));
+        endif;
+    }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
+     */
+    public function calendar($id)
+    {
+        if (Auth::user()->hasRole('admin')):
+            $model = User::findOrFail($id);
+            return view('backend.users.calendar')->with('model', $model->events);
+        else:
+            return redirect(route('admin.index'));
+        endif;
     }
 }

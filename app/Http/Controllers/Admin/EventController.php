@@ -34,9 +34,12 @@ class EventController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        if (($request->get('event_recursion')) == 'null'):
+        if ($request->get('event_recursion') == 'null'):
             $input['event_repeating_days'] = null;
             $input['event_recursion'] = null;
+        else:
+            $input['event_endDate'] = null;
+            $input['event_endTime'] = null;
         endif;
         $input['user_id'] = Auth::user()->id;
         Event::create($input);
@@ -51,7 +54,7 @@ class EventController extends Controller
     public function edit($id)
     {
         $model = Event::findOrFail($id);
-        if (Auth()->user()->id == $model->user->id)
+        if (Auth::user()->id == $model->user->id || Auth::user()->hasRole('admin'))
             return view('backend.events.edit', compact('model'));
         else
             return redirect(route('admin.event.index'));
@@ -70,6 +73,9 @@ class EventController extends Controller
         if (($request->get('event_recursion')) == 'null'):
             $input['event_repeating_days'] = null;
             $input['event_recursion'] = null;
+        else:
+            $input['event_endDate'] = null;
+            $input['event_endTime'] = null;
         endif;
         $input['user_id'] = Auth::user()->id;
         $model = Event::findOrFail($id);
@@ -84,7 +90,7 @@ class EventController extends Controller
     public function show($id)
     {
         $model = Event::findOrFail($id);
-        if (Auth()->user()->id == $model->user->id)
+        if (Auth::user()->id == $model->user->id || Auth::user()->hasRole('admin'))
             return view('backend.events.show', compact('model'));
         else
             return redirect(route('admin.event.index'));
@@ -97,7 +103,7 @@ class EventController extends Controller
     public function destroy($id)
     {
         $model = Event::findOrFail($id);
-        if (Auth()->user()->id == $model->user->id):
+        if (Auth::user()->id == $model->user->id || Auth::user()->hasRole('admin')):
             $model->delete();
             Session::flash('success', 'Event successfully deleted');
             return redirect()->back();

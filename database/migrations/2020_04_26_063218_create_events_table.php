@@ -18,9 +18,9 @@ class CreateEventsTable extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->string('event_name');
             $table->date('event_startDate');
-            $table->date('event_endDate');
+            $table->date('event_endDate')->nullable();
             $table->time('event_startTime');
-            $table->time('event_endTime');
+            $table->time('event_endTime')->nullable();
             $table->string('event_description');
             $table->integer('event_priority');
             $table->string('event_recursion')->nullable();

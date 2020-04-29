@@ -13,6 +13,8 @@ Route::get('/user/show/{id}', 'Admin\UserController@show')->name('admin.user.sho
 Route::post('/user/store', 'Admin\UserController@store')->name('admin.user.store');
 Route::post('/user/update/{id}', 'Admin\UserController@update')->name('admin.user.update');
 Route::get('/user/destroy/{id}', 'Admin\UserController@destroy')->name('admin.user.destroy');
+Route::get('/user/{id}/events/', 'Admin\UserController@events')->name('admin.user.events');
+Route::get('/user/{id}/calendar/', 'Admin\UserController@calendar')->name('admin.user.calendar');
 
 /*Events*/
 
