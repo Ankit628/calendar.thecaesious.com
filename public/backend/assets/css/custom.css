@@ -299,6 +299,10 @@ body {
 }
 
 @media (min-width: 1024px) {
+    .custom-checkboxes {
+        margin-top: 2.6rem;
+    }
+
     .mobile-menu-close {
         display: none;
     }
