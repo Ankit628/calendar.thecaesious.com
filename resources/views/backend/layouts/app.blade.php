@@ -92,17 +92,19 @@
     jQuery(function () {
         let nav = $('.navbar-nav.sidebar');
         let mobileMenu = $('.mobile-menu');
-        let mobileMenuBtn = mobileMenu.find('button')[0];
-        let bar = mobileMenu.find('span')[0];
+        let mobileSideBar = $('.mobile-sidebar');
         $('.mobile-menu-close a').on('click', function () {
             nav.addClass('display-md-none');
+            mobileSideBar.removeClass('bg-opacity');
         });
         mobileMenu.on('click', function () {
             nav.removeClass('display-md-none');
+            mobileSideBar.addClass('bg-opacity');
         });
         $('body').on('click', function (e) {
-            if (nav.hasClass('display-md-none') === false && e.target !== nav[0] && e.target !== bar && e.target !== mobileMenuBtn) {
+            if (nav.hasClass('display-md-none') === false && e.target === mobileSideBar[0]) {
                 nav.addClass('display-md-none');
+                mobileSideBar.removeClass('bg-opacity');
             }
         });
     });

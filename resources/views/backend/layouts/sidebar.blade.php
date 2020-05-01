@@ -3,6 +3,10 @@
         <span class="fa fa-bars"></span>
     </button>
 </div>
+
+<!-- Sidebar -Mobile -->
+<div class="mobile-sidebar"></div>
+
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark display-md-none">
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('admin.index')}}">
