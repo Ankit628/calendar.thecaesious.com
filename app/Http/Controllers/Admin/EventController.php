@@ -68,11 +68,9 @@ class EventController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param $id
+     * @return string
      */
     public function update(Request $request, $id)
     {

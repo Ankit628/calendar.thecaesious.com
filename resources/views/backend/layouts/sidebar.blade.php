@@ -1,5 +1,5 @@
 <div class="mobile-menu">
-    <button class="btn btn-lg btn-light text-dark p-0">
+    <button class="btn btn-lg btn-light text-lg text-dark p-0">
         <span class="fa fa-bars"></span>
     </button>
 </div>

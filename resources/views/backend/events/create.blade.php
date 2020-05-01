@@ -29,10 +29,10 @@
                                 <span class="radio-btn red"></span>
                             </label>
                         </div>
-                        <div class="col-md-1">
-                            <button type="submit" class="float-right btn btn-success" id="btn-submit">
+                        <div class="col-md-1 text-md-right">
+                            <button type="submit" class="btn btn-sm btn-success" id="btn-submit">
                                 <span class="fa fa-check-circle"></span>
-                                <span class="display-md-none">Create</span>
+                                Create
                             </button>
                         </div>
                     </div>
@@ -41,6 +41,7 @@
                     @include('backend.events.fields')
                 </div>
             {!! Form::close() !!}
+            </div>
         </div>
     </div>
 @endsection
@@ -57,6 +58,8 @@
         jQuery(function ($) {
             let customCheckboxes = $('.custom-checkboxes');
             let optionalField = $('.optional-field');
+            let createEventForm = $('#createEventForm');
+            let submitBtn = $('#btn-submit');
             customCheckboxes.on('click', function () {
                 let val = optionalField.val();
                 if (val !== 'custom_days') {
@@ -64,10 +67,8 @@
                     return false;
                 }
             });
-            let createEventForm = $('#createEventForm');
-            let submitBtn = $('#btn-submit');
-            createEventForm.submit(function (e) {
-                submitBtn.prop('disabled', true);
+            submitBtn.on('click', function (e) {
+                $(this).prop('disabled', true);
                 let value = [];
                 createEventForm.find(':input.form-control[required=required]').each(function () {
                     if ($(this).val() !== "")
@@ -81,7 +82,7 @@
                     submitBtn.prop('disabled', false);
                     return false;
                 } else {
-                    return true;
+                    createEventForm.submit();
                 }
             });
         });

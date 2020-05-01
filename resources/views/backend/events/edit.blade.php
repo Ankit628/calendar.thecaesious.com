@@ -39,7 +39,7 @@
                         <div class="col-md-12">
                             <img src="{{asset('backend/assets/img/dual-ring.png')}}" alt="loader" style="display:none;" id="loader" width="70px"/>
                             <a href="javascript:void(0)" class="btn btn-sm btn-info" id="btn-update"><span class="fa fa-check-circle"></span>
-                                <span class="display-md-none">Update</span></a>
+                                Update</a>
                             <a href="{{route('admin.event.destroy',['id'=>$model['id']])}}" class="btn btn-sm btn-danger btn-delete"><span class="fa fa-trash-alt"></span>
                                 <span class="display-md-none">Delete</span></a>
                             <a href="{{route('admin.event.show',['id'=>$model['id']])}}" class="btn btn-sm btn-warning"><span class="fa fa-eye"></span>

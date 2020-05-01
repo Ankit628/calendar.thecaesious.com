@@ -10,13 +10,13 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-9">
-                            <h4 class="card-title">
+                            <h2 class="card-title">
                                 <span class="fa fa-user-alt text-lg pr-md-4"></span>
                                 Create User Form
-                            </h4>
+                            </h2>
                         </div>
-                        <div class="col-md-3">
-                            <button type="submit" class="float-right btn btn-success" id="btn-submit">
+                        <div class="col-md-3 text-md-right">
+                            <button type="submit" class="btn btn-sm btn-success" id="btn-submit">
                                 <span class="fa fa-check-circle"></span>
                                 Create
                             </button>
@@ -39,3 +39,36 @@
         </div>
     </div>
 @endsection
+@push('scripts')
+    <script type="text/javascript">
+        jQuery(function ($) {
+            let createEventForm = $('#createUserForm');
+            let submitBtn = $('#btn-submit');
+            customCheckboxes.on('click', function () {
+                let val = optionalField.val();
+                if (val !== 'custom_days') {
+                    toastr.error('Warning', 'Cannot select Days on this option.Please select custom days option to select days');
+                    return false;
+                }
+            });
+            submitBtn.on('click', function (e) {
+                $(this).prop('disabled', true);
+                let value = [];
+                createEventForm.find(':input.form-control[required=required]').each(function () {
+                    if ($(this).val() !== "")
+                        value.push(true);
+                    else
+                        value.push(false);
+                });
+                console.log(value);
+                if (value.includes(false)) {
+                    toastr.warning('Warning', 'Please fill all the fields');
+                    submitBtn.prop('disabled', false);
+                    return false;
+                } else {
+                    createEventForm.submit();
+                }
+            });
+        });
+    </script>
+@endpush
