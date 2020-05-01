@@ -11,7 +11,7 @@
                     <div class="row">
                         <div class="col-md-9">
                             <h4 class="card-title">
-                                <span class="fa fa-user-alt text-lg pr-4"></span>
+                                <span class="fa fa-user-alt text-lg pr-md-4"></span>
                                 Create User Form
                             </h4>
                         </div>

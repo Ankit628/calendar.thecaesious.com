@@ -20,19 +20,19 @@
                             <div class="col-lg-12 col-md-12 col-sm-12 pt-0">
                                 {{ Form::open(['route' => ['admin.event.index'],'id'=>'events-filter-form','class'=>'form-horizontal','method'=>'GET']) }}
                                 <div class="form-row">
-                                    <div class="col-md-2 p-1">
+                                    <div class="col-sm-3 col-md-2 p-1">
                                         {!! Form::select('filter_per_page',getPagelist(),Request::get('time_period')?Request::get('time_period'):'this_month', ["class" => "form-control bg-light"])!!}
                                     </div>
-                                    <div class="col-md-3 p-1">
+                                    <div class="col-sm-3 col-md-3 p-1">
                                         {!! Form::select("time_period",getHumanReadableTimeFormat(), Request::get('time_period')?Request::get('time_period'):'this_month', ["class" => "form-control bg-light"]) !!}
                                     </div>
-                                    <div class="col-md-3 p-1">
+                                    <div class="col-sm-3 col-md-3 p-1">
                                         {!! Form::date("start_date", Request::get('start_date')?Request::get('start_date'):now(), ["class" => "form-control bg-light DatePicker",'required']) !!}
                                     </div>
-                                    <div class="col-md-3 p-1">
+                                    <div class="col-sm-3 col-md-3 p-1">
                                         {!! Form::date("end_date",Request::get('end_date')?Request::get('end_date'):now()->endOf('month'), ["class" => "form-control bg-light DatePicker",'required']) !!}
                                     </div>
-                                    <div class="col-md-1 p-1">
+                                    <div class="col-sm-12 col-md-1 p-1">
                                         {!! Form::submit('Filter',['class'=>'btn btn-outline-info btn-block','id'=>'filter-notifications']) !!}
                                     </div>
                                 </div>
@@ -54,7 +54,7 @@
                                 @foreach($model as $item)
                                     <tr>
                                         <td>
-                                            <span class="{{getTextClass($item['event_priority'])}} fa fa-exclamation-circle text-lg pr-4"></span> {{$item['event_name']}}
+                                            <span class="{{getTextClass($item['event_priority'])}} fa fa-exclamation-circle text-lg pr-md-4"></span> {{$item['event_name']}}
                                         </td>
                                         <td class="text-center">{{$item['event_startDate']}} / {{$item['event_endDate']}}</td>
                                         <td class="text-center">

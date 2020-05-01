@@ -22,7 +22,6 @@ class UsersTableSeeder extends Seeder
         Role::create(['name' => 'subscriber']);
         $role = Role::create(['name' => 'admin']);
 
-
         $user = factory(User::class)->create([
             'id' => 1,
             'name' => 'TheCaesious',

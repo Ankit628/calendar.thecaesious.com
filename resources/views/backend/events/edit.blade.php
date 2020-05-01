@@ -11,7 +11,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <h2 class="card-title">
-                                <span class="fa fa-sticky-note text-lg text-success pr-4"></span>
+                                <span class="fa fa-sticky-note text-lg text-success pr-md-4"></span>
                                 Edit Event: {{$model['event_name']}}
                             </h2>
                         </div>

@@ -3,7 +3,7 @@
         <span class="fa fa-bars"></span>
     </button>
 </div>
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark">
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark display-md-none">
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('admin.index')}}">
         <div class="sidebar-brand-icon rotate-n-15">

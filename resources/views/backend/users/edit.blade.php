@@ -11,7 +11,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <h4 class="card-title">
-                                <span class="fa fa-user-alt text-lg {{($model->hasRole('admin'))?'text-success':'text-warning'}} pr-4"></span> User: {{$model['name']}}
+                                <span class="fa fa-user-alt text-lg {{($model->hasRole('admin'))?'text-success':'text-warning'}} pr-md-4"></span> User: {{$model['name']}}
                             </h4>
                         </div>
                     </div>

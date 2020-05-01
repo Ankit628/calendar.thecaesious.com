@@ -8,14 +8,14 @@
             <div class="col-md-12">
                 <div class="card shadow">
                     <div class="card-header">
-                        <div class="row">
+                        <div class="row align-items-center">
                             <div class="col-md-8">
-                                <h4>
-                                    <span class="fa fa-user {{($model->hasRole('admin'))?'text-success':'text-warning'}} text-lg pr-4"></span>
+                                <h2>
+                                    <span class="fa fa-user {{($model->hasRole('admin'))?'text-success':'text-warning'}} text-lg pr-md-4"></span>
                                     Details : {{$model['name']}}
-                                </h4>
+                                </h2>
                             </div>
-                            <div class="col-md-4 text-right">
+                            <div class="col-md-4 text-md-right">
                                 <a href="{{route('admin.user.edit',['id'=>$model['id']])}}" class="btn btn-info"><span class="fa fa-edit"></span> Edit</a>
                             </div>
                         </div>

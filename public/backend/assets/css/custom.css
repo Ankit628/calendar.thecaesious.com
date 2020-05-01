@@ -1,18 +1,3 @@
-h1 {
-    display: inline;
-    position: relative;
-}
-
-h1:after {
-    content: "";
-    position: absolute;
-    background-color: #dcdde4;
-    height: 4px;
-    width: 100%;
-    bottom: 0;
-    left: 0;
-}
-
 .CopyCode::selection {
     background-color: transparent;
 }
@@ -149,12 +134,8 @@ h1:after {
 }
 
 .navbar-nav.sidebar {
-    display: none;
-    transition: opacity ease 0.5s;
-    opacity: 0;
     position: absolute;
     right: 0;
-    height: 0;
     z-index: 9999;
 }
 
@@ -175,7 +156,52 @@ h1:after {
     font-size: 1.5rem;
 }
 
+.display-md-none {
+    display: none;
+}
+
+h1, .h1 {
+    font-size: 1.8rem;
+    display: inline;
+    position: relative;
+}
+
+h1:after {
+    content: "";
+    position: absolute;
+    background-color: #81d5e4;
+    height: 2px;
+    width: 100%;
+    bottom: -5px;
+    left: 0;
+}
+
+h2, .h2 {
+    font-size: 1.2rem;
+}
+
+h3, .h3 {
+    font-size: 0.95rem;
+}
+
+h4, .h4 {
+    font-size: 0.7rem;
+}
+
+h5, .h5,
+h6, .h6 {
+    font-size: 0.5rem;
+}
+
+.btn-group-sm .card-body {
+    padding: 0.5rem;
+}
+
 @media (min-width: 768px) {
+    .display-md-none {
+        display: block;
+    }
+
     .mobile-menu {
         display: none;
     }
@@ -192,7 +218,6 @@ h1:after {
         padding-left: 0;
         margin-bottom: 0;
         list-style: none;
-        opacity: 1;
         height: 100%;
     }
 
@@ -212,6 +237,32 @@ h1:after {
     .sidebar .nav-item .nav-link span {
         display: block;
         font-size: 0.65rem;
+    }
+}
+
+@media (min-width: 992px) {
+    h1, .h1 {
+        font-size: 2.5rem;
+    }
+
+    h2, .h2 {
+        font-size: 2rem;
+    }
+
+    h3, .h3 {
+        font-size: 1.75rem;
+    }
+
+    h4, .h4 {
+        font-size: 1.5rem;
+    }
+
+    h5, .h5 {
+        font-size: 1.25rem;
+    }
+
+    h6, .h6 {
+        font-size: 1rem;
     }
 }
 

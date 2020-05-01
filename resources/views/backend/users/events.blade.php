@@ -54,7 +54,7 @@
                                 @foreach($model as $item)
                                     <tr>
                                         <td>
-                                            <span class="{{getTextClass($item['event_priority'])}} fa fa-exclamation-circle text-lg pr-4"></span> {{$item['event_name']}}
+                                            <span class="{{getTextClass($item['event_priority'])}} fa fa-exclamation-circle text-lg pr-md-4"></span> {{$item['event_name']}}
                                         </td>
                                         <td class="text-center">{{$item['event_startDate']}} / {{$item['event_endDate']}}</td>
                                         <td class="text-center">

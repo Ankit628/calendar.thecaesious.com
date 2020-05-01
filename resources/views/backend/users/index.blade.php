@@ -20,13 +20,16 @@
                             <div class="list-group-item list-group-item-action">
                                 <div class="row">
                                     <div class="col-md-3">
-                                        <h5 class="m-0">
-                                            <span class="{{($item->hasRole('admin'))?'text-success':'text-warning'}} fa fa-user text-lg pr-4"></span> {{$item['name']}}
-                                        </h5>
+                                        <h2>
+                                            <span class="{{($item->hasRole('admin'))?'text-success':'text-warning'}} fa fa-user pr-md-4"></span>
+                                            {{$item['name']}}
+                                        </h2>
                                     </div>
                                     <div class="col-md-4">
-                                        <span class="text-info fa fa-at pr-4"></span>
-                                        {{$item['email']}}
+                                        <h3>
+                                            <span class="text-info fa fa-at pr-md-4"></span>
+                                            {{$item['email']}}
+                                        </h3>
                                     </div>
                                     <div class="col-md-5">
                                         <div class="btn btn-group-sm">

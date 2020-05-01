@@ -11,7 +11,7 @@
                     <div class="row">
                         <div class="col-md-3">
                             <h2 class="card-title">
-                                <span class="fa fa-sticky-note text-lg text-success pr-4"></span>
+                                <span class="fa fa-sticky-note text-lg text-success pr-md-4"></span>
                                 Create Event Form
                             </h2>
                         </div>

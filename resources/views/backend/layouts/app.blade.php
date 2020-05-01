@@ -119,10 +119,10 @@
     jQuery(function () {
         let nav = $('.navbar-nav.sidebar');
         $('.mobile-menu-close a').on('click', function () {
-            nav.css('opacity', '0').css('display', 'none').css('height', '0');
+            nav.addClass('display-md-none');
         });
         $('.mobile-menu').on('click', function () {
-            nav.css('display', 'flex').css('opacity', '1').css('height', '100%');
+            nav.removeClass('display-md-none');
         });
     });
 </script>
