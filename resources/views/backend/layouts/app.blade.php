@@ -91,11 +91,18 @@
     @endif
     jQuery(function () {
         let nav = $('.navbar-nav.sidebar');
+        let mobileMenu = $('.mobile-menu');
+        let bar = $('.mobile-menu').find('span');
         $('.mobile-menu-close a').on('click', function () {
             nav.addClass('display-md-none');
         });
-        $('.mobile-menu').on('click', function () {
+        mobileMenu.on('click', function () {
             nav.removeClass('display-md-none');
+        });
+        $('body').on('click', function (e) {
+            if (nav.hasClass('display-md-none') === false && e.target !== nav[0] && e.target !== bar[0]) {
+                nav.addClass('display-md-none');
+            }
         });
     });
 </script>
