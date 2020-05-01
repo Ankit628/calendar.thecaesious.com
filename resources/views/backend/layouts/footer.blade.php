@@ -43,7 +43,7 @@
             </div>
             <div class="modal-body text-right">
                 <a href="javascript:void(0)" class="btn btn-sm btn-info" data-dismiss="modal" aria-label="Close">
-                    <span class="fa fa-trash-alt"></span> Close
+                   Close
                 </a>
                 <a href="" class="btn btn-danger btn-sm">
                     <span class="fa fa-trash-alt"></span> Delete
