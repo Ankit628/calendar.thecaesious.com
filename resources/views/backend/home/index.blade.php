@@ -33,6 +33,15 @@
                         </div>
                     </div>
                 </a>
+                <a href="{{route('admin.notification.push')}}" class="btn btn-sm btn-info">
+                    <div class="card bg-transparent border-0">
+                        <div class="card-body">
+                            <h4 class="card-title text-white m-0">
+                                Make Notification <span class="fa fa-bell"></span>
+                            </h4>
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
     </div>

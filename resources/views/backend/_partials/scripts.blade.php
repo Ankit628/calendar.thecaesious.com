@@ -11,4 +11,5 @@
 <script src="{{asset('backend/assets/vendor/full-calendar/main.min.js')}}"></script>
 <script src="{{asset('backend/assets/vendor/full-calendar/daygrid/main.min.js')}}"></script>
 <script src="{{asset('backend/assets/vendor/full-calendar/bootstrap/main.min.js')}}"></script>
+<script src="{{asset('backend/assets/js/script.js')}}"></script>
 

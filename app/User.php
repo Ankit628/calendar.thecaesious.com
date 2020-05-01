@@ -6,11 +6,12 @@ use App\Model\Event;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use NotificationChannels\WebPush\HasPushSubscriptions;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use Notifiable, HasRoles;
+    use Notifiable, HasRoles, HasPushSubscriptions;
 
     /**
      * The attributes that are mass assignable.

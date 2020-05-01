@@ -30,3 +30,7 @@ Route::get('/event/destroy/{id}', 'Admin\EventController@destroy')->name('admin.
 
 Route::get('/calendar', 'Admin\CalendarController@index')->name('admin.calendar.index');
 
+/*Notifications */
+
+Route::post('/notification/push', 'Admin\NotificationController@store');
+Route::get('/notification/push', 'Admin\NotificationController@push')->name('admin.notification.push');

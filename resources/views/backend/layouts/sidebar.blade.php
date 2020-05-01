@@ -33,7 +33,7 @@
     <!-- Nav Item - Dashboard -->
     <li class="nav-item">
         <a class="nav-link" href="{{route('admin.event.index')}}">
-            <i class="fa fa-bell text-lg"></i>
+            <i class="fa fa-calendar-check text-lg"></i>
             <span>Events</span>
         </a>
     </li>

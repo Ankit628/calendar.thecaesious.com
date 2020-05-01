@@ -77,6 +77,7 @@
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
+    <script src="{{asset('backend/assets/js/sw.js')}}" defer></script>
 @endguest
 @include('backend._partials.scripts')
 <script>
