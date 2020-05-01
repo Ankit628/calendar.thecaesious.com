@@ -11,14 +11,14 @@
     @if(!empty($model))
         <div class="row mb-4">
             <div class="col-md-12">
-                <div class="card shadow">
+                <div class="card shadow bg-light">
                     <div class="card-header">
                         <h3 class="card-title">
-                            Events list
+                            Events Lists
                         </h3>
                         <div class="row mb-3">
                             <div class="col-lg-12 col-md-12 col-sm-12 pt-0">
-                                {{ Form::open(['route' => ['admin.event.index'],'id'=>'events-filter-form','class'=>'form-horizontal','method'=>'GET']) }}
+                                {{ Form::open(['route' => ['admin.index'],'id'=>'events-filter-form','class'=>'form-horizontal','method'=>'GET']) }}
                                 <div class="form-row">
                                     <div class="col-sm-3 col-md-2 p-1">
                                         {!! Form::select('filter_per_page',getPagelist(),Request::get('time_period')?Request::get('time_period'):'this_month', ["class" => "form-control bg-light"])!!}
@@ -41,34 +41,32 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead class="thead-dark">
-                                <tr>
-                                    <th style="width:40%">Event Name</th>
-                                    <th style="width:30%" class="text-center">Start Date / End Date</th>
-                                    <th style="width:30%;" class="text-center">Action</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($model as $item)
-                                    <tr>
-                                        <td>
-                                            <span class="{{getTextClass($item['event_priority'])}} fa fa-exclamation-circle text-lg pr-md-4"> </span>{{$item['event_name']}}
-                                        </td>
-                                        <td class="text-center">{{$item['event_startDate']}} / {{$item['event_endDate']}}</td>
-                                        <td class="text-center">
+                        <div class="list-group list-group-flush">
+                            @foreach($model as $item)
+                                <div class="list-group-item list-group-item-action">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h3>
+                                                <span class="{{getTextClass($item['event_priority'])}} fa fa-exclamation-circle text-lg pr-md-4"></span>
+                                                {{$item['event_name']}}
+                                            </h3>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <h4>
+                                                {{$item['event_startDate']}} / {{$item['event_endDate']}}
+                                            </h4>
+                                        </div>
+                                        <div class="col-md-3">
                                             <a href="{{route('admin.event.edit',['id'=>$item['id']])}}" class="btn btn-info btn-sm"><span class="fa fa-edit"></span>
                                                 <span class="display-md-none">Edit</span></a>
                                             <a href="#deleteModal" class="btn btn-danger btn-sm btn-delete" data-toggle="modal" data-route="{{route('admin.event.destroy',['id'=>$item['id']])}}"><span class="fa fa-trash-alt"></span>
                                                 <span class="display-md-none">Delete</span></a>
-                                            <a href="{{route('admin.event.show',['id'=>$item['id']])}}" class="btn btn-warning btn-sm"><span class="fa fa-eye"></span>
+                                            <a href="{{route('admin.event.show',['id'=>$item['id']])}}" class="btn btn-warning btn-sm btn-delete"><span class="fa fa-eye"></span>
                                                 <span class="display-md-none">Show</span></a>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
