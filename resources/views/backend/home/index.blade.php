@@ -37,7 +37,7 @@
                     <div class="card bg-transparent border-0">
                         <div class="card-body">
                             <h4 class="card-title text-white m-0">
-                                Make Notification <span class="fa fa-bell"></span>
+                                Push Notification <span class="fa fa-bell"></span>
                             </h4>
                         </div>
                     </div>

@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreatePushSubscriptionsTable extends Migration
 {
@@ -14,9 +14,11 @@ class CreatePushSubscriptionsTable extends Migration
     public function up()
     {
         Schema::connection(config('webpush.database_connection'))->create(config('webpush.table_name'), function (Blueprint $table) {
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_unicode_ci';
             $table->increments('id');
             $table->morphs('subscribable');
-            $table->string('endpoint')->unique();
+            $table->string('endpoint', 255)->unique();
             $table->string('public_key')->nullable();
             $table->string('auth_token')->nullable();
             $table->string('content_encoding')->nullable();

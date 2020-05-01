@@ -32,5 +32,5 @@ Route::get('/calendar', 'Admin\CalendarController@index')->name('admin.calendar.
 
 /*Notifications */
 
-Route::post('/notification/push', 'Admin\NotificationController@store');
+Route::post('/notification/store', 'Admin\NotificationController@store');
 Route::get('/notification/push', 'Admin\NotificationController@push')->name('admin.notification.push');

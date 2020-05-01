@@ -48,7 +48,6 @@ class NotificationController extends Controller
         $key = $request->keys['p256dh'];
         $user = Auth::user();
         $user->updatePushSubscription($endpoint, $key, $token);
-        Session::flash('success', 'Notifications Updated');
         return response()->json(['success' => true], 200);
     }
 
