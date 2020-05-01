@@ -32,7 +32,7 @@
                         <div class="col-md-1">
                             <button type="submit" class="float-right btn btn-success" id="btn-submit">
                                 <span class="fa fa-check-circle"></span>
-                                Create
+                                <span class="display-md-none">Create</span>
                             </button>
                         </div>
                     </div>

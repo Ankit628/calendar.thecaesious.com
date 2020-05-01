@@ -4,7 +4,7 @@
 @endsection
 @section('content')
     <div class="row mt-5">
-        <div class="offset-2 col-md-8">
+        <div class="offset-md-2 col-md-8">
             {!! Form::model($model,['id'=>'editUserForm'])!!}
             <div class="card shadow">
                 <div class="card-header">
@@ -21,13 +21,16 @@
                         @include('backend.users.fields')
                     </div>
                 </div>
-                <div class="card-footer text-right">
+                <div class="card-footer text-md-right">
                     <div class="row">
                         <div class="col-md-12">
                             <img src="{{asset('backend/assets/img/dual-ring.png')}}" alt="loader" style="display:none;" id="loader" width="70px"/>
-                            <a href="javascript:void(0)" class="btn btn-info" id="btn-update"><span class="fa fa-check-circle"></span> Update</a>
-                            <a href="{{route('admin.user.destroy',['id'=>$model['id']])}}" class="btn btn-danger"><span class="fa fa-trash-alt"></span> Delete</a>
-                            <a href="{{route('admin.user.show',['id'=>$model['id']])}}" class="btn btn-warning"><span class="fa fa-eye"></span> Show</a>
+                            <a href="javascript:void(0)" class="btn btn-info" id="btn-update"><span class="fa fa-check-circle"></span>
+                                <span class="display-md-none">Update</span></a>
+                            <a href="{{route('admin.user.destroy',['id'=>$model['id']])}}" class="btn btn-danger"><span class="fa fa-trash-alt"></span>
+                                <span class="display-md-none">Delete</span></a>
+                            <a href="{{route('admin.user.show',['id'=>$model['id']])}}" class="btn btn-warning"><span class="fa fa-eye"></span>
+                                <span class="display-md-none">Show</span></a>
                         </div>
                     </div>
                 </div>

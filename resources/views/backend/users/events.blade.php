@@ -58,9 +58,12 @@
                                         </td>
                                         <td class="text-center">{{$item['event_startDate']}} / {{$item['event_endDate']}}</td>
                                         <td class="text-center">
-                                            <a href="{{route('admin.event.edit',['id'=>$item['id']])}}" class="btn btn-info btn-sm"><span class="fa fa-edit"></span> Edit</a>
-                                            <a href="#deleteModal" class="btn btn-danger btn-sm btn-delete" data-toggle="modal" data-route="{{route('admin.event.destroy',['id'=>$item['id']])}}"><span class="fa fa-trash-alt"></span> Delete</a>
-                                            <a href="{{route('admin.event.show',['id'=>$item['id']])}}" class="btn btn-warning btn-sm"><span class="fa fa-eye"></span> Show</a>
+                                            <a href="{{route('admin.event.edit',['id'=>$item['id']])}}" class="btn btn-info btn-sm"><span class="fa fa-edit"></span>
+                                                <span class="display-md-none">Edit</span></a>
+                                            <a href="#deleteModal" class="btn btn-danger btn-sm btn-delete" data-toggle="modal" data-route="{{route('admin.event.destroy',['id'=>$item['id']])}}"><span class="fa fa-trash-alt"></span>
+                                                <span class="display-md-none">Delete</span></a>
+                                            <a href="{{route('admin.event.show',['id'=>$item['id']])}}" class="btn btn-warning btn-sm"><span class="fa fa-eye"></span>
+                                                <span class="display-md-none">Show</span></a>
                                         </td>
                                     </tr>
                                 @endforeach

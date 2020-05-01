@@ -137,6 +137,7 @@
     position: absolute;
     right: 0;
     z-index: 9999;
+    height: 100%;
 }
 
 .mobile-menu {
@@ -201,13 +202,18 @@ body {
     font-size: 0.8rem;
 }
 
+.btn-group-sm {
+
+}
+
+
 @media (min-width: 768px) {
     body {
         font-size: 1rem;
     }
 
     .display-md-none {
-        display: block;
+        display: inline-block;
     }
 
     .mobile-menu {
@@ -225,8 +231,9 @@ body {
         flex-direction: column;
         padding-left: 0;
         margin-bottom: 0;
+        min-height: 100vh;
+        height: auto;
         list-style: none;
-        height: 100%;
     }
 
     .sidebar .sidebar-brand .sidebar-brand-text {

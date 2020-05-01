@@ -32,12 +32,17 @@
                                         </h3>
                                     </div>
                                     <div class="col-md-5">
-                                        <div class="btn btn-group-sm">
-                                            <a href="{{route('admin.user.edit',['id'=>$item['id']])}}" class="btn btn-info btn-sm"><span class="fa fa-edit"></span> Edit</a>
-                                            <a href="#deleteModal" class="btn btn-danger btn-sm btn-delete" data-toggle="modal" data-route="{{route('admin.user.destroy',['id'=>$item['id']])}}"><span class="fa fa-trash-alt"></span> Delete</a>
-                                            <a href="{{route('admin.user.show',['id'=>$item['id']])}}" class="btn btn-warning btn-sm"><span class="fa fa-eye"></span> Show</a>
-                                            <a href="{{route('admin.user.events',['id'=>$item['id']])}}" class="btn btn-success btn-sm"><span class="fa fa-sticky-note"></span> Events</a>
-                                            <a href="{{route('admin.user.calendar',['id'=>$item['id']])}}" class="btn btn-primary btn-sm"><span class="fa fa-calendar"></span> Calendar</a>
+                                        <div class="btn-group-sm">
+                                            <a href="{{route('admin.user.edit',['id'=>$item['id']])}}" class="btn btn-info btn-sm"><span class="fa fa-edit"></span>
+                                                <span class="display-md-none">Edit</span></a>
+                                            <a href="#deleteModal" class="btn btn-danger btn-sm btn-delete" data-toggle="modal" data-route="{{route('admin.user.destroy',['id'=>$item['id']])}}"><span class="fa fa-trash-alt"></span>
+                                                <span class="display-md-none">Delete</span></a>
+                                            <a href="{{route('admin.user.show',['id'=>$item['id']])}}" class="btn btn-warning btn-sm"><span class="fa fa-eye"></span>
+                                                <span class="display-md-none">Show</span></a>
+                                            <a href="{{route('admin.user.events',['id'=>$item['id']])}}" class="btn btn-success btn-sm"><span class="fa fa-sticky-note"></span>
+                                                <span class="display-md-none">Events</span></a>
+                                            <a href="{{route('admin.user.calendar',['id'=>$item['id']])}}" class="btn btn-primary btn-sm"><span class="fa fa-calendar"></span>
+                                                <span class="display-md-none">Calendar</span></a>
                                         </div>
                                     </div>
                                 </div>

@@ -8,7 +8,7 @@
             <div class="col-md-12">
                 <div class="card shadow">
                     <div class="card-header">
-                        <div class="row align-items-center">
+                        <div class="row text-md-right">
                             <div class="col-md-8">
                                 <h2>
                                     <span class="fa fa-user {{($model->hasRole('admin'))?'text-success':'text-warning'}} text-lg pr-md-4"></span>
@@ -16,7 +16,8 @@
                                 </h2>
                             </div>
                             <div class="col-md-4 text-md-right">
-                                <a href="{{route('admin.user.edit',['id'=>$model['id']])}}" class="btn btn-info"><span class="fa fa-edit"></span> Edit</a>
+                                <a href="{{route('admin.user.edit',['id'=>$model['id']])}}" class="btn btn-sm btn-info"><span class="fa fa-edit"></span>
+                                    <span class="display-md-none">Edit</span></a>
                             </div>
                         </div>
                     </div>

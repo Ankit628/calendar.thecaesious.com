@@ -5,7 +5,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <div class="card shadow p-3 full-height text-lg text-dark">
+            <div class="card shadow p-3 text-dark">
                 <div id="calendar"></div>
             </div>
         </div>

@@ -1,6 +1,6 @@
 @extends('backend.layouts.app')
 @section('page-header')
-    <h1>Detailed View of the Event</h1>
+    <h1>Detailed Event</h1>
 @endsection
 @section('content')
     @if(!empty($model))
@@ -15,8 +15,9 @@
                                     Details
                                 </h2>
                             </div>
-                            <div class="col-md-4 text-right">
-                                <a href="{{route('admin.event.edit',['id'=>$model['id']])}}" class="btn btn-info"><span class="fa fa-edit"></span> Edit</a>
+                            <div class="col-md-4 text-md-right">
+                                <a href="{{route('admin.event.edit',['id'=>$model['id']])}}" class="btn btn-sm btn-info"><span class="fa fa-edit"></span>
+                                    <span class="display-md-none">Edit</span></a>
                             </div>
                         </div>
                     </div>

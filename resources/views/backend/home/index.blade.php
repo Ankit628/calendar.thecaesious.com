@@ -6,7 +6,7 @@
     <div class="row mb-4">
         <div class="col-md-12">
             <div class="btn-group-sm">
-                <a href="{{route('admin.event.create')}}" class="btn btn-success">
+                <a href="{{route('admin.event.create')}}" class="btn btn-sm btn-success">
                     <div class="card bg-transparent border-0">
                         <div class="card-body">
                             <h4 class="card-title text-white m-0">
@@ -15,7 +15,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="{{route('admin.event.index')}}" class="btn btn-warning">
+                <a href="{{route('admin.event.index')}}" class="btn btn-sm btn-warning">
                     <div class="card bg-transparent border-0">
                         <div class="card-body">
                             <h4 class="card-title text-white m-0">
@@ -24,7 +24,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="{{route('admin.calendar.index')}}" class="btn btn-info">
+                <a href="{{route('admin.calendar.index')}}" class="btn btn-sm btn-info">
                     <div class="card bg-transparent border-0">
                         <div class="card-body">
                             <h4 class="card-title text-white m-0">
@@ -84,9 +84,12 @@
                                         </h4>
                                     </div>
                                     <div class="col-md-3">
-                                        <a href="{{route('admin.event.edit',['id'=>$item['id']])}}" class="btn btn-info btn-sm"><span class="fa fa-edit"></span> Edit</a>
-                                        <a href="#deleteModal" class="btn btn-danger btn-sm btn-delete" data-toggle="modal" data-route="{{route('admin.event.destroy',['id'=>$item['id']])}}"><span class="fa fa-trash-alt"></span> Delete</a>
-                                        <a href="{{route('admin.event.show',['id'=>$item['id']])}}" class="btn btn-warning btn-sm btn-delete"><span class="fa fa-eye"></span> Show</a>
+                                        <a href="{{route('admin.event.edit',['id'=>$item['id']])}}" class="btn btn-info btn-sm"><span class="fa fa-edit"></span>
+                                            <span class="display-md-none">Edit</span></a>
+                                        <a href="#deleteModal" class="btn btn-danger btn-sm btn-delete" data-toggle="modal" data-route="{{route('admin.event.destroy',['id'=>$item['id']])}}"><span class="fa fa-trash-alt"></span>
+                                            <span class="display-md-none">Delete</span></a>
+                                        <a href="{{route('admin.event.show',['id'=>$item['id']])}}" class="btn btn-warning btn-sm btn-delete"><span class="fa fa-eye"></span>
+                                            <span class="display-md-none">Show</span></a>
                                     </div>
                                 </div>
                             </div>

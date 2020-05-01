@@ -34,13 +34,16 @@
                 <div class="card-body">
                     @include('backend.events.fields')
                 </div>
-                <div class="card-footer text-right">
+                <div class="card-footer text-md-right">
                     <div class="row">
                         <div class="col-md-12">
                             <img src="{{asset('backend/assets/img/dual-ring.png')}}" alt="loader" style="display:none;" id="loader" width="70px"/>
-                            <a href="javascript:void(0)" class="btn btn-info" id="btn-update"><span class="fa fa-check-circle"></span> Update</a>
-                            <a href="{{route('admin.event.destroy',['id'=>$model['id']])}}" class="btn btn-danger btn-delete"><span class="fa fa-trash-alt"></span> Delete</a>
-                            <a href="{{route('admin.event.show',['id'=>$model['id']])}}" class="btn btn-warning"><span class="fa fa-eye"></span> Show</a>
+                            <a href="javascript:void(0)" class="btn btn-sm btn-info" id="btn-update"><span class="fa fa-check-circle"></span>
+                                <span class="display-md-none">Update</span></a>
+                            <a href="{{route('admin.event.destroy',['id'=>$model['id']])}}" class="btn btn-sm btn-danger btn-delete"><span class="fa fa-trash-alt"></span>
+                                <span class="display-md-none">Delete</span></a>
+                            <a href="{{route('admin.event.show',['id'=>$model['id']])}}" class="btn btn-sm btn-warning"><span class="fa fa-eye"></span>
+                                <span class="display-md-none">Show</span></a>
                         </div>
                     </div>
                 </div>
