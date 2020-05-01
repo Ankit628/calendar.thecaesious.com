@@ -92,7 +92,8 @@
     jQuery(function () {
         let nav = $('.navbar-nav.sidebar');
         let mobileMenu = $('.mobile-menu');
-        let bar = $('.mobile-menu').find('span');
+        let mobileMenuBtn = mobileMenu.find('button')[0];
+        let bar = mobileMenu.find('span')[0];
         $('.mobile-menu-close a').on('click', function () {
             nav.addClass('display-md-none');
         });
@@ -100,7 +101,7 @@
             nav.removeClass('display-md-none');
         });
         $('body').on('click', function (e) {
-            if (nav.hasClass('display-md-none') === false && e.target !== nav[0] && e.target !== bar[0]) {
+            if (nav.hasClass('display-md-none') === false && e.target !== nav[0] && e.target !== bar && e.target !== mobileMenuBtn) {
                 nav.addClass('display-md-none');
             }
         });
