@@ -10,10 +10,10 @@
                     <div class="card-header">
                         <div class="row text-md-right">
                             <div class="col-md-8">
-                                <h2>
+                                <h3>
                                     <span class="fa fa-user {{($model->hasRole('admin'))?'text-success':'text-warning'}} text-lg pr-md-4"></span>
                                     Details : {{$model['name']}}
-                                </h2>
+                                </h3>
                             </div>
                             <div class="col-md-4 text-md-right">
                                 <a href="{{route('admin.user.edit',['id'=>$model['id']])}}" class="btn btn-sm btn-info"><span class="fa fa-edit"></span>

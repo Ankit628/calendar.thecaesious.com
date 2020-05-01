@@ -20,10 +20,10 @@
                             <div class="list-group-item list-group-item-action">
                                 <div class="row">
                                     <div class="col-md-3">
-                                        <h2>
+                                        <h3>
                                             <span class="{{($item->hasRole('admin'))?'text-success':'text-warning'}} fa fa-user pr-md-4"></span>
                                             {{$item['name']}}
-                                        </h2>
+                                        </h3>
                                     </div>
                                     <div class="col-md-4">
                                         <h3>

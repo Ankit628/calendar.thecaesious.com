@@ -10,10 +10,10 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-md-8">
-                                <h2>
+                                <h3>
                                     <span class="fa fa-exclamation-triangle {{getTextClass($model['event_priority'])}} pr-md-4 text-lg"></span>
                                     Details
-                                </h2>
+                                </h3>
                             </div>
                             <div class="col-md-4 text-md-right">
                                 <a href="{{route('admin.event.edit',['id'=>$model['id']])}}" class="btn btn-sm btn-info"><span class="fa fa-edit"></span>
