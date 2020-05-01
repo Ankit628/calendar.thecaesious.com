@@ -46,8 +46,7 @@ class EventController extends Controller
             $input['event_repeating_days'] = null;
             $input['event_recursion'] = null;
         else:
-            $input['event_endDate'] = null;
-            $input['event_endTime'] = null;
+            $input['event_endDate'] = $input['event_startDate'];
         endif;
         $input['user_id'] = Auth::user()->id;
         Event::create($input);
@@ -82,8 +81,7 @@ class EventController extends Controller
             $input['event_repeating_days'] = null;
             $input['event_recursion'] = null;
         else:
-            $input['event_endDate'] = null;
-            $input['event_endTime'] = null;
+            $input['event_endDate'] = $input['event_startDate'];
         endif;
         $input['user_id'] = Auth::user()->id;
         $model = Event::findOrFail($id);

@@ -31,11 +31,9 @@
                         color: '{{getBGColor($item['event_priority'])}}',
                         @if(!empty($item['event_repeating_days']))
                         daysOfWeek: {!! getStringOfDates($item['event_repeating_days'])!!},
-                        startRecur: '{{$item['event_startDate']}}',
                         @endif
                             @if(!empty($item['event_recursion']) && $item['event_recursion']!=='custom_days')
                         daysOfWeek: {!! getStringOfDates($item['event_recursion'],$item['event_startDate'])!!},
-                        startRecur: '{{$item['event_startDate']}}'
                         @endif
                     },
                     @endforeach
