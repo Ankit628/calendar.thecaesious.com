@@ -147,3 +147,93 @@ h1:after {
     border-radius: 50%;
     background: white;
 }
+
+.navbar-nav.sidebar {
+    display: none;
+    transition: opacity ease 0.5s;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    height: 0;
+    z-index: 9999;
+}
+
+.mobile-menu {
+    position: absolute;
+    display: block;
+    top: 30px;
+    right: 30px;
+    z-index: 99;
+    cursor: pointer;
+}
+
+.mobile-menu-close {
+    display: inline;
+}
+
+.mobile-menu-close .nav-item .nav-link {
+    font-size: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .mobile-menu {
+        display: none;
+    }
+
+    .mobile-menu-close {
+        display: none;
+    }
+
+    .navbar-nav.sidebar {
+        position: relative;
+        width: 6.5rem !important;
+        display: flex;
+        flex-direction: column;
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+        opacity: 1;
+        height: 100%;
+    }
+
+    .sidebar .sidebar-brand .sidebar-brand-text {
+        display: none;
+    }
+
+    .sidebar .nav-item .nav-link i {
+        font-size: inherit;
+    }
+
+    .sidebar .nav-item .nav-link {
+        text-align: center;
+        width: 100% !important;
+    }
+
+    .sidebar .nav-item .nav-link span {
+        display: block;
+        font-size: 0.65rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .mobile-menu-close {
+        display: none;
+    }
+
+    .navbar-nav.sidebar {
+        width: 14.5rem !important;
+    }
+
+    .sidebar .sidebar-brand .sidebar-brand-text {
+        display: inline;
+    }
+
+    .sidebar .nav-item .nav-link {
+        text-align: left;
+    }
+
+    .sidebar .nav-item .nav-link span {
+        font-size: 0.9rem;
+        display: inline;
+    }
+}

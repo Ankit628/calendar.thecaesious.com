@@ -1,5 +1,9 @@
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
+<div class="mobile-menu">
+    <button class="btn btn-lg btn-light text-dark">
+        <span class="fa fa-bars"></span>
+    </button>
+</div>
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark">
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('admin.index')}}">
         <div class="sidebar-brand-icon rotate-n-15">
@@ -50,4 +54,16 @@
             <span>Logout ({{Auth::user()->name}})</span>
         </a>
     </li>
+
+    <div class="mobile-menu-close">
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+
+        <div class="nav-item">
+            <a class="nav-link" href="javascript:void(0)">
+                <i class="fa fa-arrow-circle-right text-white text-lg"></i>
+            </a>
+        </div>
+    </div>
+
 </ul>

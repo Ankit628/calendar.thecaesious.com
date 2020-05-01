@@ -106,7 +106,6 @@
     </div>
 </div>
 @include('backend._partials.scripts')
-@stack('scripts')
 <script>
     @if(Session::has('success'))
     toastr.success('Success', '{{Session::get('success')}}');
@@ -117,7 +116,17 @@
     @if(Session::has('error'))
     toastr.error('Error', '{{Session::get('error')}}');
     @endif
+    jQuery(function () {
+        let nav = $('.navbar-nav.sidebar');
+        $('.mobile-menu-close a').on('click', function () {
+            nav.css('opacity', '0').css('display', 'none').css('height', '0');
+        });
+        $('.mobile-menu').on('click', function () {
+            nav.css('display', 'flex').css('opacity', '1').css('height', '100%');
+        });
+    });
 </script>
+@stack('scripts')
 </body>
 
 </html>
