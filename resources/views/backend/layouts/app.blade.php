@@ -93,6 +93,7 @@
         let nav = $('.navbar-nav.sidebar');
         let mobileMenu = $('.mobile-menu');
         let mobileSideBar = $('.mobile-sidebar');
+        let logout = $('.btn-logout');
         $('.mobile-menu-close a').on('click', function () {
             nav.addClass('display-md-none');
             mobileSideBar.removeClass('bg-opacity');
@@ -102,10 +103,14 @@
             mobileSideBar.addClass('bg-opacity');
         });
         $('body').on('click', function (e) {
-            if (nav.hasClass('display-md-none') === false && e.target === mobileSideBar[0]) {
+            if (e.target === mobileSideBar[0]) {
                 nav.addClass('display-md-none');
                 mobileSideBar.removeClass('bg-opacity');
             }
+        });
+        logout.on('click', function () {
+            mobileSideBar.removeClass('bg-opacity');
+            nav.addClass('display-md-none');
         });
     });
 </script>

@@ -53,7 +53,7 @@
     <hr class="sidebar-divider my-0">
 
     <li class="nav-item">
-        <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
+        <a class="nav-link btn-logout" href="#" data-toggle="modal" data-target="#logoutModal">
             <i class="fas fa-sign-out-alt text-lg"></i>
             <span>Logout ({{Auth::user()->name}})</span>
         </a>
