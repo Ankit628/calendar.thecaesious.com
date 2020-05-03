@@ -64,10 +64,10 @@
 .custom-radio {
     display: inline-block;
     position: relative;
-    padding-left: 35px;
+    padding-left: 25px;
     margin-left: 12px;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 1rem;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -88,11 +88,12 @@
     position: absolute;
     top: 5px;
     left: 0;
-    height: 20px;
-    width: 20px;
+    height: 15px;
+    width: 15px;
     background-color: #eee;
     border-radius: 50%;
 }
+
 
 /* On mouse-over, add a red background color */
 .custom-radio:hover input ~ .radio-btn.red,
@@ -119,16 +120,22 @@
     display: none;
 }
 
+.custom-radio:hover input ~ .notify-btn.primary,
+.custom-radio:hover:checked ~ .notify-btn.primary,
+.custom-radio input:checked ~ .notify-btn {
+    color: #4e73df !important;
+}
+
 /* Show the indicator (dot/circle) when checked */
 .custom-radio input:checked ~ .radio-btn:after {
     display: block;
 }
 
 .custom-radio .radio-btn:after {
-    top: 6px;
-    left: 6px;
-    width: 8px;
-    height: 8px;
+    top: 4px;
+    left: 4px;
+    width: 7px;
+    height: 7px;
     border-radius: 50%;
     background: white;
 }
@@ -219,6 +226,16 @@ body {
     z-index: 100;
 }
 
+.btn-notification-wrapper {
+    position: absolute;
+    bottom: -10px;
+    right: 10px;
+}
+
+.btn-notification-wrapper span {
+    font-size: 15px
+}
+
 @media (min-width: 768px) {
     body {
         font-size: 1rem;
@@ -273,6 +290,32 @@ body {
         display: block;
         font-size: 0.65rem;
     }
+
+    .custom-radio {
+        font-size: 1.5rem;
+        padding-left: 35px;
+    }
+
+    .radio-btn {
+        height: 20px;
+        width: 20px;
+    }
+
+    .custom-radio .radio-btn::after {
+        top: 6px;
+        left: 6px;
+        width: 8px;
+        height: 8px;
+    }
+
+    .btn-notification-wrapper {
+        right: 10px;
+        bottom: -50px;
+    }
+
+    .btn-notification-wrapper span {
+        font-size: 30px
+    }
 }
 
 @media (min-width: 992px) {
@@ -322,5 +365,12 @@ body {
     .sidebar .nav-item .nav-link span {
         font-size: 0.9rem;
         display: inline;
+    }
+}
+
+@media (min-width: 1440px) {
+    .btn-notification-wrapper {
+        bottom: 0px;
+        right: 20px
     }
 }

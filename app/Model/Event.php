@@ -19,6 +19,7 @@ class Event extends Model
         'event_endTime',
         'event_description',
         'event_priority',
+        'event_notification',
         'event_recursion',
         'event_repeating_days',
         'event_data'

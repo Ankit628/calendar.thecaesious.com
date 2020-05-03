@@ -22,7 +22,8 @@ class CreateEventsTable extends Migration
             $table->time('event_startTime');
             $table->time('event_endTime')->nullable();
             $table->string('event_description');
-            $table->integer('event_priority');
+            $table->integer('event_priority')->nullable();
+            $table->integer('event_notification')->nullable();
             $table->string('event_recursion')->nullable();
             $table->json('event_repeating_days')->nullable();
             $table->json('event_data')->nullable();

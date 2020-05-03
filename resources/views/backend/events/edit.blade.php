@@ -7,7 +7,7 @@
         <div class="col-md-12">
             {!! Form::model($model,['id'=>'editEventForm'])!!}
             <div class="card shadow">
-                <div class="card-header">
+                <div class="card-header position-relative">
                     <div class="row">
                         <div class="col-md-4">
                             <h2 class="card-title">
@@ -27,6 +27,16 @@
                             <label class="custom-radio text-danger">
                                 {!! Form::radio('event_priority', '3')!!} High Priority
                                 <span class="radio-btn red"></span>
+                            </label>
+                        </div>
+                        <div class="btn-notification-wrapper">
+                            <label class="custom-radio text-secondary">
+                                {!! Form::radio('event_notification','1') !!}
+                                <span class="notify-btn fa fa-bell primary"></span>
+                            </label>
+                            <label class="custom-radio text-secondary">
+                                {!! Form::radio('event_notification','0') !!}
+                                <span class="notify-btn fa fa-bell-slash primary"></span>
                             </label>
                         </div>
                     </div>
@@ -61,7 +71,7 @@
             dateFormat: "H:i:S",
             time_24hr: false
         });
-        $(function () {
+        jQuery(function ($) {
             let customCheckboxes = $('.custom-checkboxes');
             let optionalField = $('.optional-field');
             let body = $('body');

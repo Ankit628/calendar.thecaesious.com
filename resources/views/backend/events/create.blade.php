@@ -7,9 +7,9 @@
         <div class="col-md-12">
             {!! Form::open(['id'=>'createEventForm','route'=>'admin.event.store','method'=>'POST']) !!}
             <div class="card shadow">
-                <div class="card-header">
+                <div class="card-header position-relative">
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <h2 class="card-title">
                                 <span class="fa fa-sticky-note text-lg text-success pr-md-4"></span>
                                 Create Event Form
@@ -29,18 +29,28 @@
                                 <span class="radio-btn red"></span>
                             </label>
                         </div>
-                        <div class="col-md-1 text-md-right">
-                            <button type="submit" class="btn btn-sm btn-success" id="btn-submit">
-                                <span class="fa fa-check-circle"></span>
-                                Create
-                            </button>
+                        <div class="btn-notification-wrapper">
+                            <label class="custom-radio text-secondary">
+                                {!! Form::radio('event_notification','1') !!}
+                                <span class="notify-btn fa fa-bell primary"></span>
+                            </label>
+                            <label class="custom-radio text-secondary">
+                                {!! Form::radio('event_notification','0') !!}
+                                <span class="notify-btn fa fa-bell-slash primary"></span>
+                            </label>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
                     @include('backend.events.fields')
                 </div>
-            {!! Form::close() !!}
+                <div class=" card-footer text-md-right">
+                    <button type="submit" class="btn btn-sm btn-success" id="btn-submit">
+                        <span class="fa fa-check-circle"></span>
+                        Create
+                    </button>
+                </div>
+                {!! Form::close() !!}
             </div>
         </div>
     </div>
@@ -60,6 +70,7 @@
             let optionalField = $('.optional-field');
             let createEventForm = $('#createEventForm');
             let submitBtn = $('#btn-submit');
+            let body = $('body');
             customCheckboxes.on('click', function () {
                 let val = optionalField.val();
                 if (val !== 'custom_days') {

@@ -49,6 +49,7 @@
                                             <h3>
                                                 <span class="{{getTextClass($item['event_priority'])}} fa fa-exclamation-circle text-lg pr-md-4"></span>
                                                 {{$item['event_name']}}
+                                                <span class="pl-md-4 fa fa-bell{{($item['event_notification']=='1')?"":'-slash'}} {{($item['event_notification']=='1')?"text-primary":'text-secondary'}}"></span>
                                             </h3>
                                         </div>
                                         <div class="col-md-3">

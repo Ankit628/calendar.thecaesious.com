@@ -7,17 +7,16 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card shadow">
-                    <div class="card-header">
+                    <div class="card-header position-relative">
                         <div class="row">
-                            <div class="col-md-8">
+                            <div class="col-md-12">
                                 <h3>
                                     <span class="fa fa-exclamation-triangle {{getTextClass($model['event_priority'])}} pr-md-4 text-lg"></span>
                                     Details
                                 </h3>
                             </div>
-                            <div class="col-md-4 text-md-right">
-                                <a href="{{route('admin.event.edit',['id'=>$model['id']])}}" class="btn btn-sm btn-info"><span class="fa fa-edit"></span>
-                                    <span class="display-md-none">Edit</span></a>
+                            <div class="btn-notification-wrapper">
+                                <span class="text-lg pl-md-4 fa fa-bell{{($model['event_notification']=='1')?"":'-slash'}} {{($model['event_notification']=='1')?"text-primary":'text-secondary'}}"></span>
                             </div>
                         </div>
                     </div>
@@ -78,6 +77,10 @@
                             </tr>
                             </tfoot>
                         </table>
+                    </div>
+                    <div class="card-footer text-md-right">
+                        <a href="{{route('admin.event.edit',['id'=>$model['id']])}}" class="btn btn-sm btn-info"><span class="fa fa-edit"></span>
+                            <span class="display-md-none">Edit</span></a>
                     </div>
                 </div>
             </div>

@@ -17,7 +17,7 @@
             let calendarelem = $('#calendar');
             let calendar = new FullCalendar.Calendar(calendarelem[0], {
                 plugins: ['dayGrid'],
-                theme: ['standard'],
+                theme: ['bootstrap'],
                 textColor: '#fff',
                 height: 'parent',
                 events: [
@@ -25,8 +25,8 @@
                     {
                         id: '{{$item['id']}}',
                         title: '{{$item['event_name']}}',
-                        start: '{{$item['event_startDate']}}',
-                        end: '{{$item['event_endDate']}}',
+                        start: '{{$item['event_startDate']}}' + 'T' + '{{$item['event_startTime']}}',
+                        end: '{{$item['event_endDate']}}' + 'T' + '{{$item['event_endTime']}}',
                         url: '{{route('admin.event.show',['id'=>$item['id']])}}',
                         color: '{{getBGColor($item['event_priority'])}}',
                         @if(!empty($item['event_repeating_days']))

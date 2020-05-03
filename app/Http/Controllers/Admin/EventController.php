@@ -48,6 +48,10 @@ class EventController extends Controller
         else:
             $input['event_endDate'] = $input['event_startDate'];
         endif;
+        if ($request->get('event_notification') == 'null')
+            $input['event_notification'] = 0;
+        if ($request->get('event_priority') == 'null')
+            $input['event_priority'] = 1;
         $input['user_id'] = Auth::user()->id;
         Event::create($input);
         Session::flash('success', 'Event successfully created');
