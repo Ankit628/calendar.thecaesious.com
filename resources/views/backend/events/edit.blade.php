@@ -30,11 +30,11 @@
                             </label>
                         </div>
                         <div class="btn-notification-wrapper">
-                            <label class="custom-radio text-secondary">
+                            <label class="custom-radio text-secondary notify">
                                 {!! Form::radio('event_notification','1') !!}
                                 <span class="notify-btn fa fa-bell primary"></span>
                             </label>
-                            <label class="custom-radio text-secondary">
+                            <label class="custom-radio text-secondary notify">
                                 {!! Form::radio('event_notification','0') !!}
                                 <span class="notify-btn fa fa-bell-slash primary"></span>
                             </label>
@@ -74,16 +74,19 @@
         jQuery(function ($) {
             let customCheckboxes = $('.custom-checkboxes');
             let optionalField = $('.optional-field');
-            let body = $('body');
+            let notify = $('.notify');
+            let count = 0;
             let createEventForm = $('#editEventForm');
             let loader = $('#loader');
             let submitBtn = $('#btn-update');
             let updateEventRoute = '{{route('admin.event.update',['id'=>$model['id']])}}';
+
             optionalField.on('change', function () {
                 if ($(this).val() !== 'custom_days') {
                     customCheckboxes.find('input[type=checkbox]').prop("checked", false)
                 }
             });
+
             customCheckboxes.on('click', function () {
                 let val = optionalField.val();
                 if (val !== 'custom_days') {
@@ -91,6 +94,7 @@
                     return false;
                 }
             });
+
             submitBtn.on('click', function (e) {
                 e.preventDefault();
                 submitBtn.prop('disabled', true);
@@ -130,6 +134,77 @@
                     });
                 }
             });
+
+            notify.on('click', function (e) {
+                let val = $(this).find('input[name=event_notification]').val();
+                if (val === '1') {
+                    count++;
+                    if (count === 2) {
+                        console.log('here');
+                        subscribeUser();
+                        count = 0;
+                    }
+                } else {
+                    count++;
+                    if (count === 2) {
+                        toastr.warning('Notification Disabled');
+                        count = 0;
+                    }
+                }
+            });
+
+            function subscribeUser() {
+                navigator.serviceWorker.ready.then((registration) => {
+                    const subscribeOptions = {
+                        userVisibleOnly: true,
+                        applicationServerKey: urlBase64ToUint8Array(
+                            'BAk8OB7ZrX-8WI9pWHNzSIx5tq_7uA0f-7RhKtodMW5rD_jCeB-qTXiYDq5YS6srVxvHZMpQHlyf5_UJZU6QWLo'
+                        )
+                    };
+                    return registration.pushManager.subscribe(subscribeOptions);
+                }).then((pushSubscription) => {
+                    toastr.success('Notification Enabled');
+                    console.log('Received PushSubscription: ', JSON.stringify(pushSubscription));
+                    storePushSubscription(pushSubscription);
+                });
+            }
+
+            function urlBase64ToUint8Array(base64String) {
+                var padding = '='.repeat((4 - base64String.length % 4) % 4);
+                var base64 = (base64String + padding)
+                    .replace(/\-/g, '+')
+                    .replace(/_/g, '/');
+
+                var rawData = window.atob(base64);
+                var outputArray = new Uint8Array(rawData.length);
+
+                for (var i = 0; i < rawData.length; ++i) {
+                    outputArray[i] = rawData.charCodeAt(i);
+                }
+                return outputArray;
+            }
+
+            function storePushSubscription(pushSubscription) {
+                const token = document.querySelector('meta[name=csrf-token]').getAttribute('content');
+
+                fetch('{{route('admin.notification.store')}}', {
+                    method: 'POST',
+                    body: JSON.stringify(pushSubscription),
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'X-CSRF-Token': token
+                    }
+                }).then((res) => {
+                    return res.json();
+                }).then((res) => {
+                    if (res.success === true)
+                        console.log(res)
+                }).catch((err) => {
+                    toastr.error('Error', 'Error Occured, check Console');
+                    console.log(err);
+                });
+            }
         });
     </script>
 @endpush

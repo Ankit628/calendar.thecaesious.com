@@ -77,109 +77,55 @@
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
+    <script src="{{asset('backend/assets/vendor/jquery/jquery.min.js')}}"></script>
     <script src="{{asset('/sw.js')}}" defer></script>
     <script type="text/javascript">
-        initSW();
-
-        function initSW() {
-            if ("serviceWorker" in navigator && "PushManager" in window) {
-                // Register a service worker hosted at the root of the
-                // site using the default scope.
-                navigator.serviceWorker.register('./sw.js', {scope: './'}).then(function (registration) {
-                    initPush();
-                }, function (error) {
-                    console.log('Service worker registration failed:', error);
-                });
-            } else {
-                console.log('Service workers are not supported.');
-            }
-        }
-
-        function initPush() {
-            if (!navigator.serviceWorker.ready) {
-                return;
-            }
-            new Promise(function (resolve, reject) {
-                const permissionResult = Notification.requestPermission(function (result) {
-                    resolve(result);
-                });
-                if (permissionResult) {
-                    permissionResult.then(resolve, reject);
-                }
-            }).then((permissionResult) => {
-                if (permissionResult !== 'granted') {
-                    toastr.error('Error', 'Notification Disabled');
+        jQuery(function ($) {
+            $(document).ready(function () {
+                if ("serviceWorker" in navigator && "PushManager" in window) {
+                    // Register a service worker hosted at the root of the
+                    // site using the default scope.
+                    navigator.serviceWorker.register('/private/calendar-app/public/sw.js').then(function (registration) {
+                        console.log('Service worker registered', registration);
+                        initPush();
+                    }, function (error) {
+                        console.log('Service worker registration failed:', error);
+                    });
                 } else {
-                    subscribeUser();
+                    console.log('Service workers are not supported.');
                 }
             });
-        }
 
-
-        function subscribeUser() {
-            navigator.serviceWorker.ready.then((registration) => {
-                const subscribeOptions = {
-                    userVisibleOnly: true,
-                    applicationServerKey: urlBase64ToUint8Array(
-                        'BAk8OB7ZrX-8WI9pWHNzSIx5tq_7uA0f-7RhKtodMW5rD_jCeB-qTXiYDq5YS6srVxvHZMpQHlyf5_UJZU6QWLo'
-                    )
-                };
-                return registration.pushManager.subscribe(subscribeOptions);
-            }).then((pushSubscription) => {
-                console.log('Received PushSubscription: ', JSON.stringify(pushSubscription));
-                storePushSubscription(pushSubscription);
-            });
-        }
-
-        function urlBase64ToUint8Array(base64String) {
-            var padding = '='.repeat((4 - base64String.length % 4) % 4);
-            var base64 = (base64String + padding)
-                .replace(/\-/g, '+')
-                .replace(/_/g, '/');
-
-            var rawData = window.atob(base64);
-            var outputArray = new Uint8Array(rawData.length);
-
-            for (var i = 0; i < rawData.length; ++i) {
-                outputArray[i] = rawData.charCodeAt(i);
+            function initPush() {
+                if (!navigator.serviceWorker.ready) {
+                    return;
+                }
+                new Promise(function (resolve, reject) {
+                    const permissionResult = Notification.requestPermission(function (result) {
+                        resolve(result);
+                    });
+                    if (permissionResult) {
+                        permissionResult.then(resolve, reject);
+                    }
+                }).then((permissionResult) => {
+                    if (permissionResult !== 'granted') {
+                        toastr.error('Notifications Turned Off');
+                    }
+                });
             }
-            return outputArray;
-        }
-
-        function storePushSubscription(pushSubscription) {
-            const token = document.querySelector('meta[name=csrf-token]').getAttribute('content');
-
-            fetch('{{route('admin.notification.store')}}', {
-                method: 'POST',
-                body: JSON.stringify(pushSubscription),
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'X-CSRF-Token': token
-                }
-            }).then((res) => {
-                return res.json();
-            }).then((res) => {
-                if (res.success === true)
-                    toastr.success('Notification Enabled');
-                console.log(res)
-            }).catch((err) => {
-                toastr.error('Error', 'Error Occured, check Console');
-                console.log(err);
-            });
-        }
+        });
     </script>
 @endguest
 @include('backend._partials.scripts')
 <script>
     @if(Session::has('success'))
-    toastr.success('Success', '{{Session::get('success')}}');
+    toastr.success('{{Session::get('success')}}');
     @endif
     @if(Session::has('warn'))
-    toastr.warning('Warning', '{{Session::get('warn')}}');
+    toastr.warning('{{Session::get('warn')}}');
     @endif
     @if(Session::has('error'))
-    toastr.error('Error', '{{Session::get('error')}}');
+    toastr.error('{{Session::get('error')}}');
     @endif
     jQuery(function () {
         let nav = $('.navbar-nav.sidebar');
