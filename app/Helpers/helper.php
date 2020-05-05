@@ -155,13 +155,21 @@ function getStringOfDates($var, $date = null)
                 break;
             case 'weekly':
                 $intDate = Carbon::parse($date)->format('N');
-                return "['".$intDate."']";
+                return "['" . $intDate . "']";
                 break;
             default:
                 return null;
                 break;
         }
     }
+}
+
+function getServiceWorkerUrl()
+{
+    if (env('APP_ENV') == 'local')
+        return '/private/calendar-app/public/sw.js';
+    else
+        return 'sw.js';
 }
 
 

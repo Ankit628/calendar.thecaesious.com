@@ -70,7 +70,7 @@
     <div class="col-md-12">
         <div class="form-group">
             {!! Form::label('event_description','Event Description',['class'=>'col-form-label']) !!}
-            {!! Form::textarea('event_description',null,['class'=>'form-control','required'=>'required']) !!}
+            {!! Form::textarea('event_description',null,['class'=>'form-control']) !!}
         </div>
     </div>
 </div>

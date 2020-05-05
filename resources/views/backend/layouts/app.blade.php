@@ -85,7 +85,7 @@
                 if ("serviceWorker" in navigator && "PushManager" in window) {
                     // Register a service worker hosted at the root of the
                     // site using the default scope.
-                    navigator.serviceWorker.register('/private/calendar-app/public/sw.js').then(function (registration) {
+                    navigator.serviceWorker.register('{{getServiceWorkerUrl()}}').then(function (registration) {
                         console.log('Service worker registered', registration);
                         initPush();
                     }, function (error) {

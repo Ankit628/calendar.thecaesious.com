@@ -4,9 +4,11 @@ namespace App\Model;
 
 use App\User;
 use Illuminate\Database\Eloquent\Model;
+use NotificationChannels\WebPush\HasPushSubscriptions;
 
 class Event extends Model
 {
+    use HasPushSubscriptions;
     /**
      * @var array
      */

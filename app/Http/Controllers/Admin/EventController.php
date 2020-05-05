@@ -37,7 +37,8 @@ class EventController extends Controller
 
     /**
      * @param Request $request
-     * @return string
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
@@ -48,9 +49,9 @@ class EventController extends Controller
         else:
             $input['event_endDate'] = $input['event_startDate'];
         endif;
-        if ($request->get('event_notification') == 'null')
+        if ($request->get('event_notification') == 'null' || $request->get('event_notification') == null)
             $input['event_notification'] = 0;
-        if ($request->get('event_priority') == 'null')
+        if ($request->get('event_priority') == 'null' || $request->get('event_priority') == null)
             $input['event_priority'] = 1;
         $input['user_id'] = Auth::user()->id;
         Event::create($input);
