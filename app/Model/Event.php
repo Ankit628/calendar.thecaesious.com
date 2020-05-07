@@ -4,11 +4,9 @@ namespace App\Model;
 
 use App\User;
 use Illuminate\Database\Eloquent\Model;
-use NotificationChannels\WebPush\HasPushSubscriptions;
 
 class Event extends Model
 {
-    use HasPushSubscriptions;
     /**
      * @var array
      */
@@ -22,6 +20,7 @@ class Event extends Model
         'event_description',
         'event_priority',
         'event_notification',
+        'event_notify',
         'event_recursion',
         'event_repeating_days',
         'event_data'

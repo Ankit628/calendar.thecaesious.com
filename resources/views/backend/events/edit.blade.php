@@ -75,6 +75,7 @@
             let customCheckboxes = $('.custom-checkboxes');
             let optionalField = $('.optional-field');
             let notify = $('.notify');
+            let notifyField = $('.notification');
             let count = 0;
             let createEventForm = $('#editEventForm');
             let loader = $('#loader');
@@ -135,18 +136,22 @@
                 }
             });
 
-            notify.on('click', function (e) {
+            notify.on('click', function () {
                 let val = $(this).find('input[name=event_notification]').val();
                 if (val === '1') {
                     count++;
                     if (count === 2) {
+                        notifyField.find(':input').prop('disabled', false);
+                        notifyField.show();
                         subscribeUser();
                         count = 0;
                     }
                 } else {
                     count++;
                     if (count === 2) {
-                        toastr.warning('Event notification is disabled');
+                        notifyField.find(':input').prop('disabled', true);
+                        notifyField.hide();
+                        unSubscribeUser();
                         count = 0;
                     }
                 }
@@ -164,6 +169,21 @@
                 }).then((pushSubscription) => {
                     console.log('Received PushSubscription: ', JSON.stringify(pushSubscription));
                     storePushSubscription(pushSubscription);
+                });
+            }
+
+            function unSubscribeUser() {
+                navigator.serviceWorker.ready.then((registration) => {
+                    const subscribeOptions = {
+                        userVisibleOnly: true,
+                        applicationServerKey: urlBase64ToUint8Array(
+                            'BAk8OB7ZrX-8WI9pWHNzSIx5tq_7uA0f-7RhKtodMW5rD_jCeB-qTXiYDq5YS6srVxvHZMpQHlyf5_UJZU6QWLo'
+                        )
+                    };
+                    return registration.pushManager.subscribe(subscribeOptions);
+                }).then((pushSubscription) => {
+                    console.log('Received PushSubscription: ', JSON.stringify(pushSubscription));
+                    deletePushSubscription(pushSubscription);
                 });
             }
 
@@ -185,7 +205,7 @@
             function storePushSubscription(pushSubscription) {
                 const token = document.querySelector('meta[name=csrf-token]').getAttribute('content');
                 let data = JSON.stringify(pushSubscription);
-                fetch('{{route('admin.notification.store',['id'=>$model['id']])}}', {
+                fetch('{{route('admin.notification.store')}}', {
                     method: 'POST',
                     body: data,
                     headers: {
@@ -198,6 +218,28 @@
                 }).then((res) => {
                     if (res.notificationEnabled === true)
                         toastr.success('Notification Enabled');
+                }).catch((err) => {
+                    toastr.error('Error', 'Error Occured, check console');
+                    console.log(err);
+                });
+            }
+
+            function deletePushSubscription(pushSubscription) {
+                const token = document.querySelector('meta[name=csrf-token]').getAttribute('content');
+                let data = JSON.stringify(pushSubscription);
+                fetch('{{route('admin.notification.delete')}}', {
+                    method: 'POST',
+                    body: data,
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'X-CSRF-Token': token
+                    }
+                }).then((res) => {
+                    return res.json();
+                }).then((res) => {
+                    if (res.notificationEnabled === false)
+                        toastr.warning('Notification Disabled');
                 }).catch((err) => {
                     toastr.error('Error', 'Error Occured, check console');
                     console.log(err);

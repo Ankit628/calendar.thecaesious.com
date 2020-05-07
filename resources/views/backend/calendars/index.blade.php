@@ -30,9 +30,11 @@
                         url: '{{route('admin.event.show',['id'=>$item['id']])}}',
                         color: '{{getBGColor($item['event_priority'])}}',
                         @if(!empty($item['event_repeating_days']))
+                        startRecur: '{{$item['event_startDate']}}' + 'T' + '{{$item['event_startTime']}}',
                         daysOfWeek: {!! getStringOfDates($item['event_repeating_days'])!!},
                         @endif
                             @if(!empty($item['event_recursion']) && $item['event_recursion']!=='custom_days')
+                        startRecur: '{{$item['event_startDate']}}' + 'T' + '{{$item['event_startTime']}}',
                         daysOfWeek: {!! getStringOfDates($item['event_recursion'],$item['event_startDate'])!!},
                         @endif
                     },

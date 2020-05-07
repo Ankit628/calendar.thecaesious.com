@@ -137,6 +137,41 @@ function getPageList()
 }
 
 /**
+ * @return array
+ */
+function getNotificationsTime()
+{
+    return [
+        'at_event' => 'On Event Start',
+        'hour_before' => 'Hour Before',
+        'a_day_before' => 'A Day Before',
+        'two_days_before' => 'Before Two Days',
+        'week_beforeweek_before' => 'A week Before'
+    ];
+}
+
+function getNumericValueForNotification($notify, $date, $time)
+{
+    switch ($notify) {
+        case 'at_event':
+            return Carbon::parse($date . 'T' . $time)->subMinutes(5);
+            break;
+        case 'hour_before':
+            return Carbon::parse($date . 'T' . $time)->subHour();
+            break;
+        case 'a_day_before':
+            return Carbon::parse($date . 'T' . $time)->subDay();
+            break;
+        case 'two_days_before':
+            return Carbon::parse($date . 'T' . $time)->subDays(2);
+            break;
+        case 'week_before':
+            return Carbon::parse($date . 'T' . $time)->subWeek();
+            break;
+    }
+}
+
+/**
  * @param $arr
  * @param null $date
  * @return array|Carbon|int|string|null

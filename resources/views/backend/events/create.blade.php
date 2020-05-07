@@ -30,11 +30,11 @@
                             </label>
                         </div>
                         <div class="btn-notification-wrapper">
-                            <label class="custom-radio text-secondary">
+                            <label class="custom-radio text-secondary notify">
                                 {!! Form::radio('event_notification','1') !!}
                                 <span class="notify-btn fa fa-bell primary"></span>
                             </label>
-                            <label class="custom-radio text-secondary">
+                            <label class="custom-radio text-secondary notify">
                                 {!! Form::radio('event_notification','0') !!}
                                 <span class="notify-btn fa fa-bell-slash primary"></span>
                             </label>
@@ -70,7 +70,9 @@
             let optionalField = $('.optional-field');
             let createEventForm = $('#createEventForm');
             let submitBtn = $('#btn-submit');
-            let body = $('body');
+            let notify = $('.notify');
+            let notifyField = $('.notification');
+            let count = 0;
             customCheckboxes.on('click', function () {
                 let val = optionalField.val();
                 if (val !== 'custom_days') {
@@ -78,6 +80,7 @@
                     return false;
                 }
             });
+
             submitBtn.on('click', function (e) {
                 $(this).prop('disabled', true);
                 let value = [];
@@ -96,6 +99,116 @@
                     createEventForm.submit();
                 }
             });
+
+            notify.on('click', function () {
+                let val = $(this).find('input[name=event_notification]').val();
+                if (val === '1') {
+                    count++;
+                    if (count === 2) {
+                        notifyField.find(':input').prop('disabled', false);
+                        notifyField.show();
+                        subscribeUser();
+                        count = 0;
+                    }
+                } else {
+                    count++;
+                    if (count === 2) {
+                        notifyField.find(':input').prop('disabled', true);
+                        notifyField.hide();
+                        unSubscribeUser();
+                        count = 0;
+                    }
+                }
+            });
+
+            function subscribeUser() {
+                navigator.serviceWorker.ready.then((registration) => {
+                    const subscribeOptions = {
+                        userVisibleOnly: true,
+                        applicationServerKey: urlBase64ToUint8Array(
+                            'BAk8OB7ZrX-8WI9pWHNzSIx5tq_7uA0f-7RhKtodMW5rD_jCeB-qTXiYDq5YS6srVxvHZMpQHlyf5_UJZU6QWLo'
+                        )
+                    };
+                    return registration.pushManager.subscribe(subscribeOptions);
+                }).then((pushSubscription) => {
+                    console.log('Received PushSubscription: ', JSON.stringify(pushSubscription));
+                    storePushSubscription(pushSubscription);
+                });
+            }
+
+            function unSubscribeUser() {
+                navigator.serviceWorker.ready.then((registration) => {
+                    const subscribeOptions = {
+                        userVisibleOnly: true,
+                        applicationServerKey: urlBase64ToUint8Array(
+                            'BAk8OB7ZrX-8WI9pWHNzSIx5tq_7uA0f-7RhKtodMW5rD_jCeB-qTXiYDq5YS6srVxvHZMpQHlyf5_UJZU6QWLo'
+                        )
+                    };
+                    return registration.pushManager.subscribe(subscribeOptions);
+                }).then((pushSubscription) => {
+                    console.log('Received PushSubscription: ', JSON.stringify(pushSubscription));
+                    deletePushSubscription(pushSubscription);
+                });
+            }
+
+            function urlBase64ToUint8Array(base64String) {
+                var padding = '='.repeat((4 - base64String.length % 4) % 4);
+                var base64 = (base64String + padding)
+                    .replace(/\-/g, '+')
+                    .replace(/_/g, '/');
+
+                var rawData = window.atob(base64);
+                var outputArray = new Uint8Array(rawData.length);
+
+                for (var i = 0; i < rawData.length; ++i) {
+                    outputArray[i] = rawData.charCodeAt(i);
+                }
+                return outputArray;
+            }
+
+            function storePushSubscription(pushSubscription) {
+                const token = document.querySelector('meta[name=csrf-token]').getAttribute('content');
+                let data = JSON.stringify(pushSubscription);
+                fetch('{{route('admin.notification.store')}}', {
+                    method: 'POST',
+                    body: data,
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'X-CSRF-Token': token
+                    }
+                }).then((res) => {
+                    return res.json();
+                }).then((res) => {
+                    if (res.notificationEnabled === true)
+                        toastr.success('Notification Enabled');
+                }).catch((err) => {
+                    toastr.error('Error', 'Error Occured, check console');
+                    console.log(err);
+                });
+            }
+
+            function deletePushSubscription(pushSubscription) {
+                const token = document.querySelector('meta[name=csrf-token]').getAttribute('content');
+                let data = JSON.stringify(pushSubscription);
+                fetch('{{route('admin.notification.delete')}}', {
+                    method: 'POST',
+                    body: data,
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'X-CSRF-Token': token
+                    }
+                }).then((res) => {
+                    return res.json();
+                }).then((res) => {
+                    if (res.notificationEnabled === false)
+                        toastr.warning('Notification Disabled');
+                }).catch((err) => {
+                    toastr.error('Error', 'Error Occured, check console');
+                    console.log(err);
+                });
+            }
         });
     </script>
 @endpush

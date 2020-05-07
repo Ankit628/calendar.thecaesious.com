@@ -1,4 +1,10 @@
 <div class="form-row">
+    <div class="col-md-12 notification" {{!empty($model['event_notify'])?'':"style=display:none;"}}>
+        <div class="form-group">
+            {!! Form::label('event_notify','Notify Before',['class'=>'col-form-label']) !!}
+            {!! Form::select('event_notify',getNotificationsTime(),null,['class'=>'form-control']) !!}
+        </div>
+    </div>
     <div class="col-md-12">
         <div class="form-group">
             {!! Form::label('event_name','Event Name',['class'=>'col-form-label']) !!}
