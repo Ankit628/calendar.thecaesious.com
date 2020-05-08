@@ -43,8 +43,10 @@ class NotificationController extends Controller
         $now = Carbon::now();
         foreach ($events as $event):
             $notify_date = getNumericValueForNotification($event['event_notify'], $event['event_startDate'], $event['event_startTime']);
-            if ($now->format('Y-m-d H:i') <= $notify_date->format('Y-m-d H:i'))
-                Notification::send(User::all(), new EventNotify);
+            //dd($now->format('Y-m-d H:i'), $notify_date->format('Y-m-d H:i'));
+            if ($now->format('Y-m-d H:i') >= $notify_date->format('Y-m-d H:i')):
+                Notification::send(User::findOrFail($event['user_id']), new EventNotify);
+            endif;
         endforeach;
         return redirect()->back();
     }

@@ -35,9 +35,10 @@ class EventNotify extends Notification
     public function toWebPush($notifiable, $notification)
     {
         return (new WebPushMessage)
-            ->title('I\'m Notification Title')
-//            ->icon('/notification-icon.png')
-            ->body('Great, Push Notifications work!')
-            ->action('View App', 'notification_action');
+            ->title('New Event Alert !!')
+            ->icon(env('APP_URL') . '/backend/assets/img/calendar-icon.png')
+            ->options([
+                'TTL' => 5000
+            ]);
     }
 }

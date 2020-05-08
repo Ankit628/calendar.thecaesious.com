@@ -146,10 +146,16 @@ function getNotificationsTime()
         'hour_before' => 'Hour Before',
         'a_day_before' => 'A Day Before',
         'two_days_before' => 'Before Two Days',
-        'week_beforeweek_before' => 'A week Before'
+        'week_before' => 'A week Before'
     ];
 }
 
+/**
+ * @param $notify
+ * @param $date
+ * @param $time
+ * @return Carbon
+ */
 function getNumericValueForNotification($notify, $date, $time)
 {
     switch ($notify) {
@@ -167,6 +173,25 @@ function getNumericValueForNotification($notify, $date, $time)
             break;
         case 'week_before':
             return Carbon::parse($date . 'T' . $time)->subWeek();
+            break;
+    }
+}
+
+/**
+ * @param $priority
+ * @return string
+ */
+function getUrgency($priority)
+{
+    switch ($priority) {
+        case 2:
+            return 'low';
+            break;
+        case 3:
+            return 'normal';
+            break;
+        default:
+            return 'high';
             break;
     }
 }
